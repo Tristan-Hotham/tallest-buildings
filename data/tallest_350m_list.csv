@@ -1,0 +1,99 @@
+rank,name,height_m,floors,year,city_page,country_page,region,lat,lon,position,wikidata
+1.0,Burj Khalifa,828.0,163,2010,Dubai,United Arab Emirates,Middle East,25.19722,55.27417,Wikidata,Q12495
+2.0,Merdeka Maybank Tower,678.9,118,2024,Kuala Lumpur,Malaysia,Southeast Asia,3.14167,101.70072,Wikidata,Q7969454
+3.0,Shanghai Tower,632.0,128,2015,Shanghai,China,East Asia,31.2355,121.501,Wikidata,Q18547
+4.0,Mecca Royal Clock Tower,601.0,120,2012,Mecca,Saudi Arabia,Middle East,21.41889,39.82639,Wikidata,Q18712428
+5.0,Ping An Finance Centre,599.1,115,2017,Shenzhen,China,East Asia,22.53667,114.05028,Wikidata,Q1077308
+6.0,Lotte World Tower,554.5,123,2017,Seoul,South Korea,East Asia,37.5125,127.1025,Wikidata,Q494895
+7.0,One World Trade Center,541.3,104,2014,New York City,United States,North America,40.713,-74.0135,Wikidata,Q11245
+8.0,Guangzhou CTF Finance Centre,530.0,111,2016,Guangzhou,China,East Asia,23.12028,113.32055,Wikidata,Q168575
+8.0,Tianjin CTF Finance Centre,530.0,97,2019,Tianjin,China,East Asia,39.02138,117.69846,Wikidata,Q10939987
+10.0,CITIC Tower,527.7,109,2018,Beijing,China,East Asia,39.91139,116.46028,Wikidata,Q197833
+11.0,Taipei 101,508.0,101,2004,Taipei,Taiwan,East Asia,25.03361,121.56472,Wikidata,Q83101
+12.0,Shanghai World Financial Center,492.0,101,2008,Shanghai,China,East Asia,31.23667,121.50278,Wikidata,Q80852
+13.0,International Commerce Centre,484.0,108,2010,Hong Kong,China,East Asia,22.30339,114.16017,Wikidata,Q317034
+14.0,Wuhan Greenland Center,475.6,101,2023,Wuhan,China,East Asia,30.58594,114.31748,Wikidata,Q143235
+15.0,Central Park Tower,472.4,98,2021,New York City,United States,North America,40.76633,-73.98094,Wikidata,Q2631701
+16.0,Lakhta Center,462.0,87,2019,Saint Petersburg,Russia,Europe,59.98703,30.17814,Wikidata,Q4255374
+17.0,Landmark 81,461.2,81,2018,Ho Chi Minh City,Vietnam,Southeast Asia,10.795,106.72194,Wikidata,Q18640924
+18.0,International Land-Sea Center,458.0,98,2024,Chongqing,China,East Asia,29.55315,106.51372,Wikidata,Q1666430
+19.0,The Exchange 106,453.6,95,2019,Kuala Lumpur,Malaysia,Southeast Asia,3.1419,101.71875,Wikidata,Q27670200
+20.0,Changsha IFS T1,452.1,94,2018,Changsha,China,East Asia,28.19542,112.97342,Wikidata,Q5410187
+21.0,Petronas Tower 1,451.9,88,1998,Kuala Lumpur,Malaysia,Southeast Asia,3.15778,101.71167,Wikidata,Q83063
+21.0,Petronas Tower 2,451.9,88,1998,Kuala Lumpur,Malaysia,Southeast Asia,3.15728,101.71217,Wikidata,Q83063
+23.0,Suzhou International Financial Center,450.0,95,2019,Suzhou,China,East Asia,31.3241,120.7128,Wikidata,Q617082
+23.0,Zifeng Tower,450.0,89,2010,Nanjing,China,East Asia,32.06247,118.77805,Wikidata,Q382121
+25.0,Wuhan Center,443.1,88,2019,Wuhan,China,East Asia,30.59665,114.23967,Wikidata,Q2484373
+26.0,Willis Tower,442.1,108,1974,Chicago,United States,North America,41.87861,-87.63583,Wikidata,Q29294
+27.0,KK100,441.8,98,2011,Shenzhen,China,East Asia,22.54583,114.10156,Wikidata,Q1470046
+28.0,Guangzhou International Finance Center,438.6,101,2010,Guangzhou,China,East Asia,23.12035,113.31807,Wikidata,Q1043438
+29.0,111 West 57th Street,435.3,84,2021,New York City,United States,North America,40.76489,-73.9775,Wikidata,Q2631268
+30.0,Shandong International Financial Center,428.0,88,2025,Jinan,China,East Asia,36.66961,117.09786,Wikidata,Q97943004
+31.0,One Vanderbilt,427.0,62,2020,New York City,United States,North America,40.753,-73.9785,Wikidata,Q18398409
+32.0,432 Park Avenue,425.7,85,2015,New York City,United States,North America,40.76167,-73.97194,Wikidata,Q233940
+33.0,Marina 101,425.0,101,2017,Dubai,United Arab Emirates,Middle East,25.08898,55.14863,Wikidata,Q1165269
+34.0,Trump International Hotel and Tower,423.2,98,2009,Chicago,United States,North America,41.8891,-87.62667,Wikidata,Q546221
+35.0,270 Park Avenue,423.0,60,2025,New York City,United States,North America,40.7558,-73.9754,Wikidata,Q109648853
+36.0,Minying International Trade Center T2,422.6,85,2021,Dongguan,China,East Asia,23.01407,113.75822,Wikidata,Q19458189
+37.0,Jin Mao Tower,420.5,88,1999,Shanghai,China,East Asia,31.23722,121.50139,Wikidata,Q80813
+38.0,Nanjing Financial City Phase II Plot C Tower 1,416.6,88,2025,Nanjing,China,East Asia,32.05197,118.77803,city centre (not in Wikidata),
+39.0,Princess Tower,413.4,101,2012,Dubai,United Arab Emirates,Middle East,25.08863,55.14686,Wikidata,Q19492
+40.0,Al Hamra Tower,412.6,80,2011,Kuwait City,Kuwait,Middle East,29.37861,47.99278,Wikidata,Q557933
+41.0,International Finance Centre,412.0,88,2003,Hong Kong,China,East Asia,22.28538,114.15914,Wikidata,Q14226100
+42.0,Haeundae LCT The Sharp Landmark Tower,411.6,101,2019,Busan,South Korea,East Asia,35.16042,129.16888,Wikidata,Q5961370
+43.0,Ningbo Central Plaza,409.0,80,2024,Ningbo,China,East Asia,29.86406,121.60908,Wikidata,Q1605680
+44.0,Guangxi China Resources Tower,402.7,86,2020,Nanning,China,East Asia,22.81483,108.39114,Wikidata,Q18347369
+45.0,Guiyang International Financial Center T1,401.0,79,2020,Guiyang,China,East Asia,26.65095,106.64453,Wikidata,Q97162292
+46.0,Iconic Tower,393.8,77,2023,New Administrative Capital,Egypt,Africa,30.01278,31.69389,Wikidata,Q102281065
+47.0,China Merchants Bank Global Headquarters Main Tower,393.0,77,2025,Shenzhen,China,East Asia,22.55432,114.12018,city centre (not in Wikidata),
+48.0,China Resources Tower,392.5,68,2018,Shenzhen,China,East Asia,22.51776,113.9416,Wikidata,Q18111159
+49.0,23 Marina,392.4,88,2012,Dubai,United Arab Emirates,Middle East,25.08981,55.15061,Wikidata,Q216264
+50.0,CITIC Plaza,390.2,80,1996,Guangzhou,China,East Asia,23.14444,113.31944,Wikidata,Q245246
+51.0,Citymark Centre,388.3,70,2022,Shenzhen,China,East Asia,22.56097,114.10008,Wikidata,Q130693037
+52.0,Shum Yip Upperhills Tower 1,388.1,80,2020,Shenzhen,China,East Asia,22.55958,114.06667,Wikidata,Q18415349
+53.0,30 Hudson Yards,387.1,73,2019,New York City,United States,North America,40.75397,-74.00075,Wikidata,Q15264266
+54.0,Public Investment Fund Tower,385.0,72,2021,Riyadh,Saudi Arabia,Middle East,24.76278,46.64028,Wikidata,Q13892708
+55.0,Shun Hing Square,384.0,69,1996,Shenzhen,China,East Asia,22.54528,114.10556,Wikidata,Q236201
+56.0,Eton Place Dalian Tower 1,383.2,80,2016,Dalian,China,East Asia,38.9175,121.62444,Wikidata,Q1139123
+57.0,Autograph Tower,382.9,75,2022,Jakarta,Indonesia,Southeast Asia,-6.19914,106.82263,Wikidata,Q30686870
+58.0,Logan Century Center 1,381.3,82,2018,Nanning,China,East Asia,22.81172,108.39478,Wikidata,Q18127492
+59.0,Burj Mohammed bin Rashid,381.2,88,2014,Abu Dhabi,United Arab Emirates,Middle East,24.48806,54.35639,Wikidata,Q615950
+60.0,Empire State Building,381.0,102,1931,New York City,United States,North America,40.74833,-73.98556,Wikidata,Q9188
+61.0,Elite Residence,380.5,87,2012,Dubai,United Arab Emirates,Middle East,25.08956,55.14789,Wikidata,Q1330847
+62.0,Ciel Dubai Marina,377.0,81,2025,Dubai,United Arab Emirates,Middle East,25.08744,55.14454,Wikidata,Q30754048
+63.0,Riverview Plaza,376.0,73,2021,Wuhan,China,East Asia,30.61078,114.30358,Wikidata,Q7338767
+64.0,Guangdong Business Center,375.5,60,2025,Guangzhou,China,East Asia,23.14693,113.32306,city centre (not in Wikidata),
+65.0,Dabaihui Plaza,375.6,70,2021,Shenzhen,China,East Asia,22.55432,114.12018,city centre (not in Wikidata),
+66.0,Central Plaza,373.9,78,1992,Hong Kong,China,East Asia,22.28,114.17361,Wikidata,Q112640
+67.0,Federation Tower (East Tower),373.7,93,2016,Moscow,Russia,Europe,55.75411,37.61358,city centre (not in Wikidata),
+68.0,Hengfeng Guiyang Center Tower 1,373.5,77,2025,Guiyang,China,East Asia,26.58199,106.71809,city centre (not in Wikidata),
+69.0,Dalian International Trade Center,370.2,86,2019,Dalian,China,East Asia,38.91961,121.633,Wikidata,Q2673004
+69.0,Kempinski The Boulevard Dubai,370.0,73,2017,Dubai,United Arab Emirates,Middle East,25.20087,55.27659,Wikidata,Q7712376
+69.0,Shanghai International Trade Center Tower 1,370.0,70,2025,Shanghai,China,East Asia,31.2184,121.43456,city centre (not in Wikidata),
+72.0,Haitian Center Tower 2,368.9,73,2021,Qingdao,China,East Asia,36.09193,120.32806,city centre (not in Wikidata),
+73.0,Golden Eagle Tiandi Tower A,368.1,77,2019,Nanjing,China,East Asia,32.05197,118.77803,city centre (not in Wikidata),
+74.0,Bank of China Tower,367.4,72,1990,Hong Kong,China,East Asia,22.27917,114.16139,Wikidata,Q214855
+75.0,Bank of America Tower,365.8,55,2009,New York City,United States,North America,40.75528,-73.98417,Wikidata,Q328505
+76.0,St. Regis Chicago,362.9,101,2020,Chicago,United States,North America,41.88722,-87.61722,Wikidata,Q19817578
+77.0,Almas Tower,360.0,68,2008,Dubai,United Arab Emirates,Middle East,25.06883,55.14113,Wikidata,Q838780
+77.0,Ping An Finance Center Tower 1,360.0,62,2023,Jinan,China,East Asia,36.66761,117.09822,Wikidata,Q98071476
+79.0,Huiyun Center,359.2,80,2023,Shenzhen,China,East Asia,22.52691,113.96534,Wikidata,Q109039173
+80.0,Hanking Center,358.9,65,2018,Shenzhen,China,East Asia,22.54348,113.93164,Wikidata,Q18348250
+81.0,City Tower 1,358.0,94,2025,Dubai,United Arab Emirates,Middle East,25.23194,55.27803,city centre (not in Wikidata),
+81.0,Greenland Group Suzhou Center,358.0,77,2025,Suzhou,China,East Asia,33.63806,116.97694,city centre (not in Wikidata),
+83.0,Gevora Hotel,356.3,75,2017,Dubai,United Arab Emirates,Middle East,25.2125,55.27722,Wikidata,Q401098
+84.0,Galaxy World Tower 1,356.0,71,2023,Shenzhen,China,East Asia,22.6075,114.05722,Wikidata,Q113006408
+84.0,Galaxy World Tower 2,356.0,71,2023,Shenzhen,China,East Asia,22.60742,114.05581,Wikidata,Q113006416
+84.0,Il Primo Tower,356.0,79,2022,Dubai,United Arab Emirates,Middle East,25.19639,55.272,Wikidata,Q113660049
+87.0,JW Marriott Marquis Dubai Tower 1,355.4,82,2012,Dubai,United Arab Emirates,Middle East,25.186,55.25845,Wikidata,Q24061819
+87.0,JW Marriott Marquis Dubai Tower 2,355.4,82,2013,Dubai,United Arab Emirates,Middle East,25.18531,55.25778,Wikidata,Q24061869
+89.0,Emirates Office Tower,354.6,54,2000,Dubai,United Arab Emirates,Middle East,25.2175,55.28333,Wikidata,Q845182
+90.0,Raffles City Chongqing T3N,354.5,79,2019,Chongqing,China,East Asia,29.56822,106.58375,Wikidata,Q55908607
+90.0,Raffles City Chongqing T4N,354.5,74,2019,Chongqing,China,East Asia,29.56772,106.58425,Wikidata,Q55908607
+92.0,OKO – South Tower,354.2,90,2015,Moscow,Russia,Europe,55.74936,37.53408,Wikidata,Q2790931
+93.0,CBRT Tower,352.0,59,2024,Istanbul,Turkey,Middle East,41.002,29.11048,Wikidata,Q131388493
+93.0,The Marina Torch,352.0,86,2011,Dubai,United Arab Emirates,Middle East,25.08806,55.1475,Wikidata,Q1808317
+95.0,SkyTower at Pinnacle One Yonge,351.4,106,2026,Toronto,Canada,North America,43.70193,-79.42197,city centre (not in Wikidata),
+96.0,Forum 66 Tower 1,350.6,68,2015,Shenyang,China,East Asia,41.79944,123.4275,Wikidata,Q111669486
+97.0,The Pinnacle,350.3,60,2012,Guangzhou,China,East Asia,23.14693,113.32306,city centre (not in Wikidata),
+98.0,Xi'an Glory International Financial Center,350.0,75,2021,Xi'an,China,East Asia,34.1947,108.87786,Wikidata,Q30766281

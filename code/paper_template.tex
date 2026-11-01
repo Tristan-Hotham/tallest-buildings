@@ -1,0 +1,157 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\setmainfont{TeX Gyre Pagella}
+\newfontfamily\headfont{Inter}[UprightFont=*-ExtraBold,BoldFont=*-ExtraBold,Extension=.otf,Path=/usr/share/fonts/opentype/inter/]
+\usepackage[a4paper,margin=2.3cm]{geometry}
+\usepackage{graphicx,booktabs,float,caption,array,xcolor,longtable}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage[round]{natbib}
+\usepackage{setspace}
+\setstretch{1.05}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.75}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{2em}
+\setlength{\parskip}{0.55em}
+\titleformat{\section}{\headfont\Large}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\headfont\large}{\thesubsection}{0.8em}{}
+\captionsetup{font=small,labelfont=bf}
+\urlstyle{same}
+\hypersetup{pdftitle={The World's Tallest Building},pdfauthor={Tristan Hotham}}
+
+\begin{document}
+\begin{center}
+{\Large\bfseries The World's Tallest Building\par}
+\vspace{0.4em}
+{\large Who held the record, for how long, and where today's tall buildings are,\\from the Great Pyramid to Jeddah Tower\par}
+\vspace{1.2em}
+{\large Tristan Hotham\par}
+\vspace{0.3em}
+{\small Independent researcher\\
+ORCID: 0000-0003-4931-9349\\
+DOI: \href{https://doi.org/{{meta.doi}}}{https://doi.org/{{meta.doi}}}\par}
+\vspace{0.8em}
+2026
+\end{center}
+
+\begin{quote}
+\small
+\begin{center}\textbf{Abstract}\end{center}
+The title of the world's tallest building is easy to name today and surprisingly slippery in the past, because it depends on what counts as a building and how height is measured. Using the record-holder tables of English Wikipedia's history of the world's tallest buildings, its list of the {{list350.n|int}} buildings of 350 m or more, and a cleaned extract of Wikidata, I trace the record from the Great Pyramid of Giza to the Burj Khalifa and map today's tall buildings. Treating churches as buildings, as the source does, the record has been held in {{records.n_cities|int}} cities since the 13th century. Lincoln Cathedral held it longest, {{records.lincoln_years|int}} years from 1311 to 1549, and churches held it for {{records.church_years|int}} of the {{records.span_years|int}} years since 1311 ({{records.church_pct|pc}}). New York held it for {{records.nyc_years|int}} years and the United States for {{records.us_years|int}}, until the Petronas Towers took it to Kuala Lumpur in 1998; it has stayed in Asia since. The Great Pyramid, a structure rather than a building, was the tallest structure for about {{records.pyr_years|int}} years. Of the {{list350.n|int}} buildings of 350 m or more, {{list350.asia|int}} ({{list350.asia_pct|pc}}) are in Asia and {{list350.since2010|int}} were finished since 2010. Among {{wd.n200|int}} buildings of 200 m or more in Wikidata that survive unit checks, Asia's share of completions rose from {{wd.asia_share.1980|pc}} in the 1980s to {{wd.asia_share.2010|pc}} in the 2010s. Wikipedia lists Jeddah Tower as under construction at a planned {{uc.jeddah_h|int}} m, with completion planned for {{uc.jeddah_planned|raw}}. I set out the definitions each source uses and the unit errors in Wikidata's heights, which make naive counts of tall buildings unreliable.
+
+\textbf{Keywords:} tallest buildings; skyscrapers; history of architecture; cathedrals; CTBUH; Wikidata; Wikipedia; data quality; maps
+\end{quote}
+
+\section{Introduction}
+Few records are as public as the world's tallest building. It has been claimed by cathedral chapters, insurance companies, banks, oil states and developers, argued over in newspapers and settled, since the late 20th century, by the Council on Tall Buildings and Urban Habitat (CTBUH) and its measurement rules \citep{ctbuh}. English Wikipedia keeps a history of the record, with tables of the holders and their heights, and a list of the tallest buildings standing now \citep{wphist,wplist}. Wikidata, the structured sister project, records heights, coordinates and dates for thousands of buildings \citep{wikidata}.
+
+This paper puts those sources together to answer three descriptive questions. Which buildings and cities held the record, and for how long? How did the building of very tall towers spread across the world, and when did Asia overtake North America? And where are today's tall buildings? An interactive version, with a slider that follows the record through time over a map of today's buildings, is at \url{{{meta.page}}}.
+
+\section{Definitions}
+The answer depends on the definition, and the sources use three.
+
+\textbf{Buildings in the history of the record.} Wikipedia's history page defines a building as something regularly inhabited or occupied, cites the CTBUH's definition of a building as a structure ``designed for residential, business or manufacturing purposes'' that ``has floors'', and says that it ``treats churches and cathedrals as buildings'', although much of their height is in towers and spires that are not occupied \citep{wphist}. Heights follow the CTBUH default, the architectural top, including spires but not antennas, masts or flagpoles. The page notes that the CTBUH adopted three criteria in 1996, when the Petronas Towers and the Sears Tower disputed the title; by the highest tip, the Sears Tower kept the record until 2010.
+
+\textbf{Today's tallest buildings.} The list page counts ``enclosed structures with continuously occupiable floors'' of at least 350 m to the highest architectural feature, completed or architecturally topped out, and excludes non-building structures such as radio towers \citep{wplist}. In the revision used it has {{list350.n|int}} entries.
+
+\textbf{Structures.} The Great Pyramid of Giza, the Washington Monument ({{records.wm_h|int}} m, 1884), the Eiffel Tower ({{records.eiffel_h|int}} m, 1889) and from 1954 a succession of radio and television masts held the record for the tallest structure of any kind without being buildings. According to the history page, since 1884 the tallest structure has also been the tallest building only from 1930 to 1954 and since 2010.
+
+I keep two tracks throughout: the tallest building, which follows the history page's tables, and the tallest structure, which follows its text.
+
+\section{Data}
+\textbf{Record-holders.} The history page \citep{wphist} has a table of {{records.n_church|int}} rows for churches and cathedrals (13th century to 1894) and one of {{records.n_sky|int}} rows for skyscrapers (1894 to the present), with years held, city, height and, for skyscrapers, status. Together they name {{records.n_buildings|int}} buildings, as St Mary's Church in Stralsund held the title twice. The structures track uses the page's prose for the Great Pyramid ({{records.pyr_h|f1}} m, ``the tallest structure in the world for over 3,800 years, until the construction of Lincoln Cathedral in 1311''), the Washington Monument, the Eiffel Tower, the Chrysler and Empire State Buildings, the masts from 1954 and the Burj Khalifa from 2010. The page gives no date for the Great Pyramid; I use Wikidata's inception, 2560 BC, which is consistent with the page's ``over 3,800 years''.
+
+\textbf{Today's tallest.} The list page \citep{wplist} gives name, height, floors, city, country and year for the {{list350.n|int}} buildings of 350 m or more, {{uc.n|int}} buildings of 350 m or more under construction, and the tallest building on each continent.
+
+\textbf{Wikidata.} An extract of {{wd.n_items|int}} Wikidata items that are architectural structures with a height of 100 or more ({{wd.n_rows|int}} rows, one per class), with coordinates, official opening, inception, city, country and class \citep{wikidata}. Heights were extracted without their units.
+
+\textbf{Checks and geography.} For buildings in the United States I compared heights with the CORGIS skyscrapers dataset, a teaching dataset of about 2,400 United States buildings derived from the CTBUH Skyscraper Center to 2016 \citep{corgis}. It is used only to check units and is not redistributed. Countries, regions and city names come from Natural Earth \citep{naturalearth}.
+
+{{TABLE_SOURCES}}
+
+\section{Methods}
+\textbf{Years held.} Each holder's reign runs from its first year to the next holder's, with {{meta.now|raw}} as the end of the Burj Khalifa's reign so far. Old St Paul's Cathedral's reign has no start (``13th century''), so I leave London out of the totals. Years are summed by city and by present-day country.
+
+\textbf{Cleaning Wikidata.} The steps, in order, are:
+\begin{enumerate}
+\item Keep items whose classes include a kind of occupied building (skyscraper, tower block, office, hotel, residential or apartment building, civic and commercial buildings, churches, mosques and temples) and drop those that are also towers, masts, transmitters, bridges, dams, monuments and similar unless they are also skyscrapers or offices ({{wd.drop_notbuilding|int}} items dropped).
+\item Drop items classed as under construction, unfinished or destroyed ({{wd.drop_dead|int}}) and heights over 830 m, taller than the Burj Khalifa and so certainly in the wrong unit ({{wd.drop_830|int}}).
+\item Where an item has two heights about 3.28 apart, keep the smaller (metres).
+\item Buildings of 350 m or more must match the list page, by name, alias or height and city; matched items take the list's height, year and city ({{wd.list_matched|int}} matched), and Wikidata items of 350 m or more not on it are dropped ({{wd.drop_350|int}}). The {{list350.placed_city|int}} list buildings missing from the extract are added at their city centre.
+\item Drop items with no opening or inception year, or one after {{meta.now|raw}} ({{wd.drop_noyear|int}}).
+\item United States: keep a height under 350 m only if a CORGIS building of the same name within 30 km has a height within 8\%. {{wd.n_corgis_ok|int}} agreed, {{wd.n_corgis_bad|int}} disagreed ({{wd.n_corgis_feet|int}} of them by the ratio of feet to metres) and {{wd.n_unchecked_us|int}} could not be checked; only the {{wd.n_corgis_ok|int}} are counted.
+\item Elsewhere, keep heights as given, except {{wd.drop_review|int}} found on reading the list of buildings of 200 m or more to be plainly feet (a cathedral founded in 1075 at 277 m, for example).
+\item Leave the {{wd.religious|int}} churches, mosques and temples out of the counts and the map, because Wikidata dates them by their founding rather than by when they reached their height.
+\end{enumerate}
+The result is {{wd.n_counted|int}} buildings of 100 m or more, {{wd.n200|int}} of them 200 m or more. The year is the official opening where Wikidata has one ({{wd.ysrc_open|int}} buildings), otherwise the inception ({{wd.ysrc_inc|int}}), and the list's year for list buildings ({{wd.ysrc_list|int}}).
+
+\textbf{Regions and cities.} Points are placed in Natural Earth countries and grouped into nine regions from Natural Earth subregions (Hong Kong, Macau and Taiwan with East Asia; Western Asia, including Turkey, as the Middle East; Central Asia with South Asia). ``Asia'' means East, Southeast and South Asia and the Middle East. A building's city is the largest Natural Earth populated place of 400,000 or more within 40 km, unless a place of 150,000 or more is less than a third as far away, otherwise the nearest place within 30 km. Static maps use the Equal Earth projection \citep{equalearth}.
+
+\section{Results}
+\subsection{The record-holders}
+Figure~\ref{fig:skyline} draws every holder to scale and Table~\ref{tab:records} lists them. The first building in the history page's table is Old St Paul's Cathedral in London ({{records.stpaul_h|int}} m). Lincoln Cathedral took the title in 1311 with a spire of {{records.lincoln_h|f1}} m and held it until the spire collapsed in 1549. Collapse and fire then passed it between St Mary's in Stralsund, Beauvais Cathedral and Strasbourg Cathedral, which held it from 1647 to 1874 at {{records.strasbourg_h|int}} m, the lowest of any holder. Hamburg, Rouen, Cologne and Ulm followed between 1874 and 1890; Ulm Minster ({{records.ulm_h|f1}} m) was the last church to hold the record. Philadelphia City Hall ({{records.phl_h|int}} m) took it in 1894, and from 1908 to 1973 it stayed in New York: the Singer Building, the Metropolitan Life Tower, the Woolworth Building, 40 Wall Street and the Chrysler Building (both 1930), the Empire State Building ({{records.esb_h|int}} m, {{records.esb_years|int}} years) and the World Trade Center ({{records.wtc_h|int}} m). The Sears Tower in Chicago ({{records.sears_h|int}} m) held it from 1973 to 1998, the Petronas Towers ({{records.petronas_h|int}} m) to 2004, Taipei 101 ({{records.taipei_h|int}} m) to 2010, and the Burj Khalifa ({{records.burj_h|int}} m) since. The Burj Khalifa's margin over Taipei 101, {{records.burj_jump_m|int}} m or {{records.burj_jump_pct|pc}}, is the largest increase in the record's history.
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_skyline.png}
+\caption{Every holder of the record, to scale and in order. Filled: tallest building (churches count, as in the source); hatched: tallest structure that was not a building; dashed: Jeddah Tower, under construction. Heights from the Wikipedia tables; outlines are simplified sketches.}\label{fig:skyline}\end{figure}
+
+{{TABLE_RECORDS}}
+
+\subsection{How long each city held it}
+Figure~\ref{fig:tenure} and Table~\ref{tab:cities} show the years held. Lincoln ({{records.lincoln_years|int}} years) and Strasbourg ({{records.stras_years|int}}) dominate, then Stralsund ({{records.stral_years|int}}), New York ({{records.nyc_years|int}}), Chicago ({{records.chi_years|int}}), Dubai ({{records.dubai_years|int}} so far) and Philadelphia ({{records.phl_years|int}}). By present-day country the United Kingdom leads with {{records.countries.0.years|int}} years, France {{records.countries.1.years|int}}, Germany {{records.countries.2.years|int}} and the United States {{records.countries.3.years|int}}. Churches held the title for {{records.church_years|int}} of the {{records.span_years|int}} years since 1311 ({{records.church_pct|pc}}). The history page's introduction says New York held the record for {{records.intro_nyc|int}} years and Chicago for {{records.intro_chi|int}}; its own table gives {{records.nyc_years|int}} and {{records.chi_years|int}}, which I use. The list page also says Strasbourg Cathedral was the tallest building from 1439 to 1874, while the history table gives 1647 to 1874.
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_tenure.png}
+\caption{Top: the tallest building and the tallest structure, 1300 to {{meta.now|raw}}, coloured by city. Bottom: years as home of the tallest building, by city.}\label{fig:tenure}\end{figure}
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_route.png}
+\caption{Where the record-holders stood. Triangles: the Great Pyramid, the Washington Monument and the Eiffel Tower, which held the record for structures but were not buildings.}\label{fig:route}\end{figure}
+
+{{TABLE_CITIES}}
+
+\subsection{The boom and the move to Asia}
+Of the {{wd.n200|int}} buildings of 200 m or more, {{wd.since2000|int}} ({{wd.since2000_pct|pc}}) were finished in 2000 or later and {{wd.tot.2010|int}} in the 2010s alone (Figure~\ref{fig:boom}). Before 1990, {{wd.na_pre1990_pct|pc}} were in North America and {{wd.asia_pre1990_pct|pc}} in Asia. Asia's share of completions rose from {{wd.asia_share.1980|pc}} in the 1980s to {{wd.asia_share.1990|pc}} in the 1990s, {{wd.asia_share.2000|pc}} in the 2000s and {{wd.asia_share.2010|pc}} in the 2010s; the 2020s so far stand at {{wd.asia_share.2020|pc}}. Because unchecked United States records are left out, North America is undercounted. Counting all {{wd.n_us_unchecked200|int}} unchecked United States records of 200 m or more, many of which are certainly feet, Asia's share in the 2010s would still be {{wd.asia_share_us.2010|pc}}.
+
+The complete list of buildings of 350 m or more shows the same shift more sharply. {{list350.asia|int}} of the {{list350.n|int}} ({{list350.asia_pct|pc}}) are in Asia: {{list350.ea|int}} in East Asia, {{list350.me|int}} in the Middle East and {{list350.sea|int}} in Southeast Asia, against {{list350.na|int}} in North America, {{list350.europe|int}} in Europe and {{list350.africa|int}} in Africa. Only {{list350.before2000|int}} were finished before 2000; {{list350.since2010|int}} were finished in 2010 or later. The oldest is the Empire State Building of 1931.
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_boom.png}
+\caption{Buildings finished per decade by region: 200 m or more in Wikidata after unit checks (left) and all buildings of 350 m or more on Wikipedia's list (right). Figures above the bars: Asia's share, including the Middle East.}\label{fig:boom}\end{figure}
+
+\subsection{Where they are now}
+Wikidata, after the checks, has the most buildings of 200 m or more in {{wd.cities.0.city|raw}} ({{wd.cities.0.n|int}}), {{wd.cities.1.city|raw}} ({{wd.cities.1.n|int}}), {{wd.cities.2.city|raw}} ({{wd.cities.2.n|int}}), {{wd.cities.3.city|raw}} ({{wd.cities.3.n|int}}) and {{wd.cities.4.city|raw}} ({{wd.cities.4.n|int}}) (Figures~\ref{fig:map} and \ref{fig:cities}, Table~\ref{tab:top}). These are counts of records. Wikidata is patchy for China: {{list350.missing_cn|int}} of the list's {{list350.china_hk|int}} buildings of 350 m or more in China and Hong Kong ({{list350.missing_cn_pct|pc}}) are missing from the extract, against {{list350.missing_other|int}} of the other {{list350.n_other|int}} ({{list350.missing_other_pct|pc}}), and coverage of shorter buildings is likely to be worse. For the very tallest, the complete list is the better guide: it puts {{list350.cities.0.city|raw}} first with {{list350.cities.0.n|int}} buildings of 350 m or more, then {{list350.cities.1.city|raw}} ({{list350.cities.1.n|int}}) and {{list350.cities.2.city|raw}} ({{list350.cities.2.n|int}}). By country, the list has {{list350.china|int}} buildings in mainland China, {{list350.uae|int}} in the United Arab Emirates and {{list350.usa|int}} in the United States.
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_map200.png}
+\caption{Buildings of 200 m or more, grouped by city (circle area: number of buildings; colour: region).}\label{fig:map}\end{figure}
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_cities.png}
+\caption{Cities with the most buildings of 200 m or more in Wikidata after checks (left; dark: those of 350 m or more) and of 350 m or more on Wikipedia's complete list (right).}\label{fig:cities}\end{figure}
+
+{{TABLE_TOP}}
+
+\subsection{What comes next}
+The list page shows {{uc.n|int}} buildings of 350 m or more under construction, {{uc.asia|int}} of them in Asia and {{uc.china|int}} in China; {{uc.usa|int}} is in the United States. Two would pass 600 m: Jeddah Tower in Saudi Arabia, with a planned architectural height of {{uc.jeddah_h|int}} m, {{uc.jeddah_floors|raw}} floors and completion planned for {{uc.jeddah_planned|raw}}, and Dubai's Burj Azizi ({{uc.azizi_h|int}} m, planned for {{uc.azizi_planned|raw}}). If Jeddah Tower is completed as planned it will be {{uc.jeddah_over_burj_m|int}} m taller than the Burj Khalifa. I report only the page's status and planned figures; planned heights and dates often change.
+
+{{TABLE_UC}}
+
+\section{Limitations}
+The record-holder tables are Wikipedia's, and the page itself notes disputed medieval heights: Lincoln's 159.7 m is ``disputed by some, but accepted by most sources'', and Christopher Wren put Old St Paul's spire at 140 m rather than 149 m. The page is internally inconsistent in places (New York's 86 years in its introduction against 65 in its table; Taipei 101's reign ending in 2009 in the text and 2010 in the table), and the two pages disagree about Strasbourg. Dates before the 14th century are not resolved. Wikidata's heights lack units; the checks remove the worst errors but heights outside the United States are kept as given, and some will be feet. Wikidata's coverage is uneven, thinnest for China, so counts by city and region are counts of records. Inception dates are sometimes the start of construction. Buildings since demolished are not on the map. Positions of {{list350.placed_city|int}} list buildings are city centres, and those of Lincoln and Beauvais cathedrals were entered by hand.
+
+\section{Conclusion}
+For most of recorded history the tallest building was a church, and the longest reigns belong to Lincoln and Strasbourg rather than to any skyscraper. The skyscraper record was American for a century and has been Asian since 1998, and the tall buildings that followed are overwhelmingly Asian too. The next record, a kilometre-tall tower in Jeddah, continues that shift. Measuring the change needs care: open data can trace it, but only after the definitions are fixed and the units checked.
+
+\section*{Data and code availability}
+The interactive map is at \url{{{meta.page}}}. Data and code are at \url{{{meta.repo}}} and archived with this paper at \url{https://doi.org/{{meta.doi}}}. Tables derived from Wikipedia are released under CC BY-SA 4.0, as is the rest of the derived data; code is under the MIT licence. Wikidata is CC0. The CORGIS data were used only as a check and are not redistributed.
+
+\section*{AI statement}
+I wrote the text, with drafting and editing assistance from Claude (Anthropic), which also helped prepare the analysis code. I reviewed and checked all text and results.
+
+\begin{thebibliography}{9}
+\bibitem[CORGIS(2016)]{corgis} CORGIS Datasets Project (2016) Skyscrapers dataset, derived from the CTBUH Skyscraper Center. \url{https://github.com/corgis-edu/corgis}
+\bibitem[CTBUH(2026)]{ctbuh} Council on Tall Buildings and Urban Habitat (2026) Height criteria and the Skyscraper Center. \url{https://www.ctbuh.org/}
+\bibitem[Natural Earth(2026)]{naturalearth} Natural Earth (2026) Admin 0 countries and populated places. Public domain. \url{https://www.naturalearthdata.com/}
+\bibitem[Šavrič et al.(2019)]{equalearth} Šavrič, B., Patterson, T. and Jenny, B. (2019) The Equal Earth map projection. \emph{International Journal of Geographical Information Science} 33(3): 454 to 465.
+\bibitem[Vrandečić and Krötzsch(2014)]{wikidata} Vrandečić, D. and Krötzsch, M. (2014) Wikidata: a free collaborative knowledgebase. \emph{Communications of the ACM} 57(10): 78 to 85. Data CC0, \url{https://www.wikidata.org/}
+\bibitem[Wikipedia(2026a)]{wphist} Wikipedia contributors (2026) History of the world's tallest buildings. English Wikipedia, revision {{meta.rev_history|raw}}. CC BY-SA 4.0. \url{https://en.wikipedia.org/wiki/History_of_the_world's_tallest_buildings}
+\bibitem[Wikipedia(2026b)]{wplist} Wikipedia contributors (2026) List of tallest buildings. English Wikipedia, revision {{meta.rev_list|raw}}. CC BY-SA 4.0. \url{https://en.wikipedia.org/wiki/List_of_tallest_buildings}
+\end{thebibliography}
+\end{document}

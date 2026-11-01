@@ -1,0 +1,16 @@
+city,country,years_as_tallest_building,first_year,buildings
+Lincoln,United Kingdom,238.0,1311.0,Lincoln Cathedral
+Strasbourg,France,227.0,1647.0,Cathedral of Our Lady of Strasbourg
+Stralsund,Germany,94.0,1549.0,St. Mary's Church
+New York City,United States,65.0,1908.0,1 World Trade Center; 40 Wall Street; Chrysler Building; Empire State Building; Metropolitan Life Tower; Singer Building; Woolworth Building
+Chicago,United States,25.0,1973.0,Sears Tower
+Dubai,United Arab Emirates,16.0,2010.0,Burj Khalifa
+Philadelphia,United States,14.0,1894.0,Philadelphia City Hall
+Cologne,Germany,10.0,1880.0,Cologne Cathedral
+Kuala Lumpur,Malaysia,6.0,1998.0,Petronas Towers
+Taipei,Taiwan,6.0,2004.0,Taipei 101
+Beauvais,France,4.0,1569.0,St. Pierre's Cathedral
+Rouen,France,4.0,1876.0,Rouen Cathedral
+Ulm,Germany,4.0,1890.0,Ulm Minster
+Hamburg,Germany,2.0,1874.0,Church of St. Nicholas
+London,United Kingdom,,,Old St Paul's Cathedral

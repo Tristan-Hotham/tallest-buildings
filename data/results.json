@@ -1,0 +1,1768 @@
+{
+ "meta": {
+  "slug": "tallest-buildings",
+  "page": "https://maps.tristanhotham.com/tallest-buildings/",
+  "repo": "https://github.com/Tristan-Hotham/tallest-buildings",
+  "doi": "10.5281/zenodo.23857608",
+  "now": 2026,
+  "rev_history": 1379678838,
+  "rev_list": 1376498189
+ },
+ "records": {
+  "n_rows": 22,
+  "n_buildings": 21,
+  "n_cities": 15,
+  "n_church": 10,
+  "n_sky": 12,
+  "cities": [
+   {
+    "city": "Lincoln",
+    "country": "United Kingdom",
+    "years": 238,
+    "first": 1311,
+    "holders": [
+     "Lincoln Cathedral"
+    ],
+    "spans": [
+     [
+      1311,
+      1549
+     ]
+    ]
+   },
+   {
+    "city": "Strasbourg",
+    "country": "France",
+    "years": 227,
+    "first": 1647,
+    "holders": [
+     "Cathedral of Our Lady of Strasbourg"
+    ],
+    "spans": [
+     [
+      1647,
+      1874
+     ]
+    ]
+   },
+   {
+    "city": "Stralsund",
+    "country": "Germany",
+    "years": 94,
+    "first": 1549,
+    "holders": [
+     "St. Mary's Church"
+    ],
+    "spans": [
+     [
+      1549,
+      1569
+     ],
+     [
+      1573,
+      1647
+     ]
+    ]
+   },
+   {
+    "city": "New York City",
+    "country": "United States",
+    "years": 65,
+    "first": 1908,
+    "holders": [
+     "1 World Trade Center",
+     "40 Wall Street",
+     "Chrysler Building",
+     "Empire State Building",
+     "Metropolitan Life Tower",
+     "Singer Building",
+     "Woolworth Building"
+    ],
+    "spans": [
+     [
+      1908,
+      1909
+     ],
+     [
+      1909,
+      1913
+     ],
+     [
+      1913,
+      1930
+     ],
+     [
+      1930,
+      1930
+     ],
+     [
+      1930,
+      1931
+     ],
+     [
+      1931,
+      1970
+     ],
+     [
+      1970,
+      1973
+     ]
+    ]
+   },
+   {
+    "city": "Chicago",
+    "country": "United States",
+    "years": 25,
+    "first": 1973,
+    "holders": [
+     "Sears Tower"
+    ],
+    "spans": [
+     [
+      1973,
+      1998
+     ]
+    ]
+   },
+   {
+    "city": "Dubai",
+    "country": "United Arab Emirates",
+    "years": 16,
+    "first": 2010,
+    "holders": [
+     "Burj Khalifa"
+    ],
+    "spans": [
+     [
+      2010,
+      2026
+     ]
+    ]
+   },
+   {
+    "city": "Philadelphia",
+    "country": "United States",
+    "years": 14,
+    "first": 1894,
+    "holders": [
+     "Philadelphia City Hall"
+    ],
+    "spans": [
+     [
+      1894,
+      1908
+     ]
+    ]
+   },
+   {
+    "city": "Cologne",
+    "country": "Germany",
+    "years": 10,
+    "first": 1880,
+    "holders": [
+     "Cologne Cathedral"
+    ],
+    "spans": [
+     [
+      1880,
+      1890
+     ]
+    ]
+   },
+   {
+    "city": "Kuala Lumpur",
+    "country": "Malaysia",
+    "years": 6,
+    "first": 1998,
+    "holders": [
+     "Petronas Towers"
+    ],
+    "spans": [
+     [
+      1998,
+      2004
+     ]
+    ]
+   },
+   {
+    "city": "Taipei",
+    "country": "Taiwan",
+    "years": 6,
+    "first": 2004,
+    "holders": [
+     "Taipei 101"
+    ],
+    "spans": [
+     [
+      2004,
+      2010
+     ]
+    ]
+   },
+   {
+    "city": "Beauvais",
+    "country": "France",
+    "years": 4,
+    "first": 1569,
+    "holders": [
+     "St. Pierre's Cathedral"
+    ],
+    "spans": [
+     [
+      1569,
+      1573
+     ]
+    ]
+   },
+   {
+    "city": "Rouen",
+    "country": "France",
+    "years": 4,
+    "first": 1876,
+    "holders": [
+     "Rouen Cathedral"
+    ],
+    "spans": [
+     [
+      1876,
+      1880
+     ]
+    ]
+   },
+   {
+    "city": "Ulm",
+    "country": "Germany",
+    "years": 4,
+    "first": 1890,
+    "holders": [
+     "Ulm Minster"
+    ],
+    "spans": [
+     [
+      1890,
+      1894
+     ]
+    ]
+   },
+   {
+    "city": "Hamburg",
+    "country": "Germany",
+    "years": 2,
+    "first": 1874,
+    "holders": [
+     "Church of St. Nicholas"
+    ],
+    "spans": [
+     [
+      1874,
+      1876
+     ]
+    ]
+   },
+   {
+    "city": "London",
+    "country": "United Kingdom",
+    "years": null,
+    "first": null,
+    "holders": [
+     "Old St Paul's Cathedral"
+    ],
+    "spans": [
+     [
+      null,
+      1311
+     ]
+    ]
+   }
+  ],
+  "countries": [
+   {
+    "country": "United Kingdom",
+    "years": 238
+   },
+   {
+    "country": "France",
+    "years": 235
+   },
+   {
+    "country": "Germany",
+    "years": 110
+   },
+   {
+    "country": "United States",
+    "years": 104
+   },
+   {
+    "country": "United Arab Emirates",
+    "years": 16
+   },
+   {
+    "country": "Malaysia",
+    "years": 6
+   },
+   {
+    "country": "Taiwan",
+    "years": 6
+   }
+  ],
+  "span_years": 715,
+  "church_years": 583,
+  "church_pct": 81.53846153846153,
+  "us_years": 104,
+  "nyc_years": 65,
+  "chi_years": 25,
+  "lincoln_years": 238,
+  "stras_years": 227,
+  "stral_years": 94,
+  "dubai_years": 16,
+  "phl_years": 14,
+  "asia_years": 28,
+  "pyr_years": 3870,
+  "pyr_h": 146.5,
+  "pyr_from": -2560,
+  "lincoln_h": 159.7,
+  "stpaul_h": 149.0,
+  "ulm_h": 161.53,
+  "phl_h": 167.0,
+  "singer_h": 192.0,
+  "chrysler_h": 318.9,
+  "esb_h": 381.0,
+  "esb_years": 39,
+  "wtc_h": 417.0,
+  "sears_h": 442.0,
+  "petronas_h": 452.0,
+  "taipei_h": 510.0,
+  "burj_h": 828.0,
+  "burj_jump_pct": 62.35294117647059,
+  "burj_jump_m": 318.0,
+  "burj_x_lincoln": 5.184721352536005,
+  "strasbourg_h": 142.0,
+  "wall40_h": 283.0,
+  "wm_h": 169,
+  "eiffel_h": 300,
+  "eiffel_years": 41,
+  "nyc_struct_years": 24,
+  "mast_years": 56,
+  "shortest_h": 142.0,
+  "shortest": "Cathedral of Our Lady of Strasbourg",
+  "intro_nyc": 86,
+  "intro_chi": 30
+ },
+ "list350": {
+  "n": 98,
+  "asia": 81,
+  "asia_pct": 82.65306122448979,
+  "by_region": {
+   "East Asia": 55,
+   "Southeast Asia": 6,
+   "South Asia": 0,
+   "Middle East": 20,
+   "Europe": 3,
+   "North America": 13,
+   "Latin America": 0,
+   "Africa": 1,
+   "Oceania": 0
+  },
+  "since2010": 82,
+  "since2010_pct": 83.6734693877551,
+  "before2000": 9,
+  "since2020": 37,
+  "by_decade": {
+   "1930": 1,
+   "1970": 1,
+   "1990": 7,
+   "2000": 7,
+   "2010": 45,
+   "2020": 37
+  },
+  "cities": [
+   {
+    "city": "Dubai",
+    "n": 15,
+    "region": "Middle East"
+   },
+   {
+    "city": "Shenzhen",
+    "n": 12,
+    "region": "East Asia"
+   },
+   {
+    "city": "New York",
+    "n": 9,
+    "region": "North America"
+   },
+   {
+    "city": "Guangzhou",
+    "n": 5,
+    "region": "East Asia"
+   },
+   {
+    "city": "Kuala Lumpur",
+    "n": 4,
+    "region": "Southeast Asia"
+   },
+   {
+    "city": "Shanghai",
+    "n": 4,
+    "region": "East Asia"
+   },
+   {
+    "city": "Hong Kong",
+    "n": 4,
+    "region": "East Asia"
+   },
+   {
+    "city": "Wuhan",
+    "n": 3,
+    "region": "East Asia"
+   },
+   {
+    "city": "Chongqing",
+    "n": 3,
+    "region": "East Asia"
+   },
+   {
+    "city": "Nanjing",
+    "n": 3,
+    "region": "East Asia"
+   },
+   {
+    "city": "Chicago",
+    "n": 3,
+    "region": "North America"
+   },
+   {
+    "city": "Suzhou",
+    "n": 2,
+    "region": "East Asia"
+   },
+   {
+    "city": "Jinan",
+    "n": 2,
+    "region": "East Asia"
+   },
+   {
+    "city": "Nanning",
+    "n": 2,
+    "region": "East Asia"
+   },
+   {
+    "city": "Guiyang",
+    "n": 2,
+    "region": "East Asia"
+   },
+   {
+    "city": "Dalian",
+    "n": 2,
+    "region": "East Asia"
+   },
+   {
+    "city": "Moscow",
+    "n": 2,
+    "region": "Europe"
+   },
+   {
+    "city": "Makkah",
+    "n": 1,
+    "region": "Middle East"
+   },
+   {
+    "city": "Seoul",
+    "n": 1,
+    "region": "East Asia"
+   },
+   {
+    "city": "Hangu",
+    "n": 1,
+    "region": "East Asia"
+   },
+   {
+    "city": "Beijing",
+    "n": 1,
+    "region": "East Asia"
+   },
+   {
+    "city": "Taipei",
+    "n": 1,
+    "region": "East Asia"
+   },
+   {
+    "city": "St. Petersburg",
+    "n": 1,
+    "region": "Europe"
+   },
+   {
+    "city": "Ho Chi Minh City",
+    "n": 1,
+    "region": "Southeast Asia"
+   },
+   {
+    "city": "Changsha",
+    "n": 1,
+    "region": "East Asia"
+   },
+   {
+    "city": "Dongguan",
+    "n": 1,
+    "region": "East Asia"
+   },
+   {
+    "city": "Kuwait City",
+    "n": 1,
+    "region": "Middle East"
+   },
+   {
+    "city": "Busan",
+    "n": 1,
+    "region": "East Asia"
+   },
+   {
+    "city": "Ningbo",
+    "n": 1,
+    "region": "East Asia"
+   },
+   {
+    "city": "New Administrative Capital",
+    "n": 1,
+    "region": "Africa"
+   },
+   {
+    "city": "Riyadh",
+    "n": 1,
+    "region": "Middle East"
+   },
+   {
+    "city": "Jakarta",
+    "n": 1,
+    "region": "Southeast Asia"
+   },
+   {
+    "city": "Abu Dhabi",
+    "n": 1,
+    "region": "Middle East"
+   },
+   {
+    "city": "Qingdao",
+    "n": 1,
+    "region": "East Asia"
+   },
+   {
+    "city": "Istanbul",
+    "n": 1,
+    "region": "Middle East"
+   },
+   {
+    "city": "Toronto",
+    "n": 1,
+    "region": "North America"
+   },
+   {
+    "city": "Shenyeng",
+    "n": 1,
+    "region": "East Asia"
+   },
+   {
+    "city": "Xian",
+    "n": 1,
+    "region": "East Asia"
+   }
+  ],
+  "n_cities": 38,
+  "china": 48,
+  "hk": 4,
+  "uae": 16,
+  "usa": 12,
+  "n_countries": 15,
+  "oldest": {
+   "name": "Empire State Building",
+   "year": 1931,
+   "city": "New York"
+  },
+  "europe": 3,
+  "na": 13,
+  "africa": 1,
+  "me": 20,
+  "ea": 55,
+  "sea": 6,
+  "megatall": 4,
+  "supertall_def": 300,
+  "megatall_def": 600,
+  "placed_city": 13,
+  "missing_cn": 10,
+  "missing_other": 3,
+  "china_hk": 52,
+  "n_other": 46,
+  "missing_cn_pct": 19.23076923076923,
+  "missing_other_pct": 6.521739130434782
+ },
+ "wd": {
+  "n_rows": 7395,
+  "n_items": 4669,
+  "n_buildings": 1681,
+  "n_counted": 1343,
+  "n200": 464,
+  "n_unchecked_us": 242,
+  "n_corgis_ok": 156,
+  "n_corgis_bad": 14,
+  "n_corgis_feet": 4,
+  "drop_notbuilding": 2543,
+  "drop_dead": 29,
+  "drop_830": 11,
+  "drop_noyear": 319,
+  "drop_350": 99,
+  "drop_review": 4,
+  "list_matched": 83,
+  "grid": {
+   "1900": {
+    "East Asia": 0,
+    "Southeast Asia": 0,
+    "South Asia": 0,
+    "Middle East": 0,
+    "Europe": 0,
+    "North America": 0,
+    "Latin America": 0,
+    "Africa": 0,
+    "Oceania": 0
+   },
+   "1910": {
+    "East Asia": 0,
+    "Southeast Asia": 0,
+    "South Asia": 0,
+    "Middle East": 0,
+    "Europe": 0,
+    "North America": 1,
+    "Latin America": 0,
+    "Africa": 0,
+    "Oceania": 0
+   },
+   "1920": {
+    "East Asia": 0,
+    "Southeast Asia": 0,
+    "South Asia": 0,
+    "Middle East": 0,
+    "Europe": 0,
+    "North America": 0,
+    "Latin America": 0,
+    "Africa": 0,
+    "Oceania": 0
+   },
+   "1930": {
+    "East Asia": 0,
+    "Southeast Asia": 0,
+    "South Asia": 0,
+    "Middle East": 0,
+    "Europe": 0,
+    "North America": 5,
+    "Latin America": 0,
+    "Africa": 0,
+    "Oceania": 0
+   },
+   "1940": {
+    "East Asia": 0,
+    "Southeast Asia": 0,
+    "South Asia": 0,
+    "Middle East": 0,
+    "Europe": 0,
+    "North America": 0,
+    "Latin America": 0,
+    "Africa": 0,
+    "Oceania": 0
+   },
+   "1950": {
+    "East Asia": 0,
+    "Southeast Asia": 0,
+    "South Asia": 0,
+    "Middle East": 0,
+    "Europe": 2,
+    "North America": 0,
+    "Latin America": 0,
+    "Africa": 0,
+    "Oceania": 0
+   },
+   "1960": {
+    "East Asia": 0,
+    "Southeast Asia": 0,
+    "South Asia": 0,
+    "Middle East": 0,
+    "Europe": 0,
+    "North America": 5,
+    "Latin America": 0,
+    "Africa": 0,
+    "Oceania": 0
+   },
+   "1970": {
+    "East Asia": 1,
+    "Southeast Asia": 0,
+    "South Asia": 0,
+    "Middle East": 0,
+    "Europe": 3,
+    "North America": 18,
+    "Latin America": 1,
+    "Africa": 1,
+    "Oceania": 0
+   },
+   "1980": {
+    "East Asia": 5,
+    "Southeast Asia": 2,
+    "South Asia": 0,
+    "Middle East": 0,
+    "Europe": 0,
+    "North America": 17,
+    "Latin America": 1,
+    "Africa": 0,
+    "Oceania": 1
+   },
+   "1990": {
+    "East Asia": 19,
+    "Southeast Asia": 4,
+    "South Asia": 0,
+    "Middle East": 1,
+    "Europe": 5,
+    "North America": 13,
+    "Latin America": 0,
+    "Africa": 0,
+    "Oceania": 4
+   },
+   "2000": {
+    "East Asia": 31,
+    "Southeast Asia": 4,
+    "South Asia": 0,
+    "Middle East": 18,
+    "Europe": 7,
+    "North America": 19,
+    "Latin America": 1,
+    "Africa": 0,
+    "Oceania": 4
+   },
+   "2010": {
+    "East Asia": 101,
+    "Southeast Asia": 15,
+    "South Asia": 3,
+    "Middle East": 39,
+    "Europe": 18,
+    "North America": 25,
+    "Latin America": 8,
+    "Africa": 2,
+    "Oceania": 1
+   },
+   "2020": {
+    "East Asia": 35,
+    "Southeast Asia": 2,
+    "South Asia": 1,
+    "Middle East": 6,
+    "Europe": 5,
+    "North America": 6,
+    "Latin America": 2,
+    "Africa": 1,
+    "Oceania": 1
+   }
+  },
+  "tot": {
+   "1900": 0,
+   "1910": 1,
+   "1920": 0,
+   "1930": 5,
+   "1940": 0,
+   "1950": 2,
+   "1960": 5,
+   "1970": 24,
+   "1980": 26,
+   "1990": 46,
+   "2000": 84,
+   "2010": 212,
+   "2020": 59
+  },
+  "asia_share": {
+   "1900": null,
+   "1910": 0.0,
+   "1920": null,
+   "1930": 0.0,
+   "1940": null,
+   "1950": 0.0,
+   "1960": 0.0,
+   "1970": 4.166666666666667,
+   "1980": 26.923076923076923,
+   "1990": 52.17391304347826,
+   "2000": 63.095238095238095,
+   "2010": 74.52830188679245,
+   "2020": 74.57627118644068
+  },
+  "grid350": {
+   "1900": {
+    "East Asia": 0,
+    "Southeast Asia": 0,
+    "South Asia": 0,
+    "Middle East": 0,
+    "Europe": 0,
+    "North America": 0,
+    "Latin America": 0,
+    "Africa": 0,
+    "Oceania": 0
+   },
+   "1910": {
+    "East Asia": 0,
+    "Southeast Asia": 0,
+    "South Asia": 0,
+    "Middle East": 0,
+    "Europe": 0,
+    "North America": 0,
+    "Latin America": 0,
+    "Africa": 0,
+    "Oceania": 0
+   },
+   "1920": {
+    "East Asia": 0,
+    "Southeast Asia": 0,
+    "South Asia": 0,
+    "Middle East": 0,
+    "Europe": 0,
+    "North America": 0,
+    "Latin America": 0,
+    "Africa": 0,
+    "Oceania": 0
+   },
+   "1930": {
+    "East Asia": 0,
+    "Southeast Asia": 0,
+    "South Asia": 0,
+    "Middle East": 0,
+    "Europe": 0,
+    "North America": 1,
+    "Latin America": 0,
+    "Africa": 0,
+    "Oceania": 0
+   },
+   "1940": {
+    "East Asia": 0,
+    "Southeast Asia": 0,
+    "South Asia": 0,
+    "Middle East": 0,
+    "Europe": 0,
+    "North America": 0,
+    "Latin America": 0,
+    "Africa": 0,
+    "Oceania": 0
+   },
+   "1950": {
+    "East Asia": 0,
+    "Southeast Asia": 0,
+    "South Asia": 0,
+    "Middle East": 0,
+    "Europe": 0,
+    "North America": 0,
+    "Latin America": 0,
+    "Africa": 0,
+    "Oceania": 0
+   },
+   "1960": {
+    "East Asia": 0,
+    "Southeast Asia": 0,
+    "South Asia": 0,
+    "Middle East": 0,
+    "Europe": 0,
+    "North America": 0,
+    "Latin America": 0,
+    "Africa": 0,
+    "Oceania": 0
+   },
+   "1970": {
+    "East Asia": 0,
+    "Southeast Asia": 0,
+    "South Asia": 0,
+    "Middle East": 0,
+    "Europe": 0,
+    "North America": 1,
+    "Latin America": 0,
+    "Africa": 0,
+    "Oceania": 0
+   },
+   "1980": {
+    "East Asia": 0,
+    "Southeast Asia": 0,
+    "South Asia": 0,
+    "Middle East": 0,
+    "Europe": 0,
+    "North America": 0,
+    "Latin America": 0,
+    "Africa": 0,
+    "Oceania": 0
+   },
+   "1990": {
+    "East Asia": 5,
+    "Southeast Asia": 2,
+    "South Asia": 0,
+    "Middle East": 0,
+    "Europe": 0,
+    "North America": 0,
+    "Latin America": 0,
+    "Africa": 0,
+    "Oceania": 0
+   },
+   "2000": {
+    "East Asia": 3,
+    "Southeast Asia": 0,
+    "South Asia": 0,
+    "Middle East": 2,
+    "Europe": 0,
+    "North America": 2,
+    "Latin America": 0,
+    "Africa": 0,
+    "Oceania": 0
+   },
+   "2010": {
+    "East Asia": 24,
+    "Southeast Asia": 2,
+    "South Asia": 0,
+    "Middle East": 13,
+    "Europe": 3,
+    "North America": 3,
+    "Latin America": 0,
+    "Africa": 0,
+    "Oceania": 0
+   },
+   "2020": {
+    "East Asia": 23,
+    "Southeast Asia": 2,
+    "South Asia": 0,
+    "Middle East": 5,
+    "Europe": 0,
+    "North America": 6,
+    "Latin America": 0,
+    "Africa": 1,
+    "Oceania": 0
+   }
+  },
+  "asia_share_us": {
+   "1900": 0.0,
+   "1910": 0.0,
+   "1920": 0.0,
+   "1930": 0.0,
+   "1940": 0.0,
+   "1950": 0.0,
+   "1960": 0.0,
+   "1970": 3.0303030303030303,
+   "1980": 21.21212121212121,
+   "1990": 42.857142857142854,
+   "2000": 58.24175824175825,
+   "2010": 65.28925619834712,
+   "2020": 68.75
+  },
+  "n_us_unchecked200": 95,
+  "cities": [
+   {
+    "city": "New York",
+    "iso": "USA",
+    "country": "United States",
+    "region": "North America",
+    "n": 43,
+    "n350": 9,
+    "tallest": "One World Trade Center",
+    "tallest_h": 541.3,
+    "lat": 40.7547,
+    "lon": -73.98444
+   },
+   {
+    "city": "Dubai",
+    "iso": "ARE",
+    "country": "United Arab Emirates",
+    "region": "Middle East",
+    "n": 37,
+    "n350": 15,
+    "tallest": "Burj Khalifa",
+    "tallest_h": 828.0,
+    "lat": 25.19338,
+    "lon": 55.26583
+   },
+   {
+    "city": "Shenzhen",
+    "iso": "CHN",
+    "country": "China",
+    "region": "East Asia",
+    "n": 36,
+    "n350": 12,
+    "tallest": "Ping An Finance Centre",
+    "tallest_h": 599.1,
+    "lat": 22.544515,
+    "lon": 114.050435
+   },
+   {
+    "city": "Chicago",
+    "iso": "USA",
+    "country": "United States",
+    "region": "North America",
+    "n": 18,
+    "n350": 3,
+    "tallest": "Willis Tower",
+    "tallest_h": 442.1,
+    "lat": 41.885415,
+    "lon": -87.62618499999999
+   },
+   {
+    "city": "Tokyo",
+    "iso": "JPN",
+    "country": "Japan",
+    "region": "East Asia",
+    "n": 16,
+    "n350": 0,
+    "tallest": "Azabudai Hills Mori JP Tower",
+    "tallest_h": 325.2,
+    "lat": 35.67363,
+    "lon": 139.73042
+   },
+   {
+    "city": "Hong Kong",
+    "iso": "HKG",
+    "country": "Hong Kong",
+    "region": "East Asia",
+    "n": 12,
+    "n350": 4,
+    "tallest": "International Commerce Centre",
+    "tallest_h": 484.0,
+    "lat": 22.28236,
+    "lon": 114.17023499999999
+   },
+   {
+    "city": "Guangzhou",
+    "iso": "CHN",
+    "country": "China",
+    "region": "East Asia",
+    "n": 12,
+    "n350": 5,
+    "tallest": "Guangzhou CTF Finance Centre",
+    "tallest_h": 530.0,
+    "lat": 23.125325,
+    "lon": 113.320415
+   },
+   {
+    "city": "Moscow",
+    "iso": "RUS",
+    "country": "Russia",
+    "region": "Europe",
+    "n": 11,
+    "n350": 2,
+    "tallest": "Federation Tower (East Tower)",
+    "tallest_h": 373.7,
+    "lat": 55.75056,
+    "lon": 37.54083
+   },
+   {
+    "city": "Shanghai",
+    "iso": "CHN",
+    "country": "China",
+    "region": "East Asia",
+    "n": 11,
+    "n350": 4,
+    "tallest": "Shanghai Tower",
+    "tallest_h": 632.0,
+    "lat": 31.2355,
+    "lon": 121.49361
+   },
+   {
+    "city": "Toronto",
+    "iso": "CAN",
+    "country": "Canada",
+    "region": "North America",
+    "n": 10,
+    "n350": 1,
+    "tallest": "SkyTower at Pinnacle One Yonge",
+    "tallest_h": 351.4,
+    "lat": 43.64945,
+    "lon": -79.38390000000001
+   },
+   {
+    "city": "Chongqing",
+    "iso": "CHN",
+    "country": "China",
+    "region": "East Asia",
+    "n": 10,
+    "n350": 3,
+    "tallest": "International Land-Sea Center",
+    "tallest_h": 458.0,
+    "lat": 29.561415,
+    "lon": 106.57124999999999
+   },
+   {
+    "city": "Houston",
+    "iso": "USA",
+    "country": "United States",
+    "region": "North America",
+    "n": 8,
+    "n350": 0,
+    "tallest": "JPMorgan Chase Tower",
+    "tallest_h": 305.4,
+    "lat": 29.75806,
+    "lon": -95.36866
+   },
+   {
+    "city": "Los Angeles",
+    "iso": "USA",
+    "country": "United States",
+    "region": "North America",
+    "n": 7,
+    "n350": 0,
+    "tallest": "U.S. Bank Tower",
+    "tallest_h": 310.3,
+    "lat": 34.05,
+    "lon": -118.25694
+   },
+   {
+    "city": "Bangkok",
+    "iso": "THA",
+    "country": "Thailand",
+    "region": "Southeast Asia",
+    "n": 7,
+    "n350": 0,
+    "tallest": "King Power Mahanakhon",
+    "tallest_h": 314.0,
+    "lat": 13.72111,
+    "lon": 100.52833
+   },
+   {
+    "city": "Seoul",
+    "iso": "KOR",
+    "country": "South Korea",
+    "region": "East Asia",
+    "n": 7,
+    "n350": 1,
+    "tallest": "Lotte World Tower",
+    "tallest_h": 554.5,
+    "lat": 37.51972,
+    "lon": 126.94
+   },
+   {
+    "city": "Pyongyang",
+    "iso": "PRK",
+    "country": "North Korea",
+    "region": "East Asia",
+    "n": 6,
+    "n350": 0,
+    "tallest": "Songhwa Street Main Tower",
+    "tallest_h": 273.0,
+    "lat": 39.05973,
+    "lon": 125.758555
+   },
+   {
+    "city": "Jakarta",
+    "iso": "IDN",
+    "country": "Indonesia",
+    "region": "Southeast Asia",
+    "n": 6,
+    "n350": 1,
+    "tallest": "Autograph Tower",
+    "tallest_h": 382.9,
+    "lat": -6.224385,
+    "lon": 106.82206
+   },
+   {
+    "city": "Kuala Lumpur",
+    "iso": "MYS",
+    "country": "Malaysia",
+    "region": "Southeast Asia",
+    "n": 6,
+    "n350": 4,
+    "tallest": "Merdeka Maybank Tower",
+    "tallest_h": 678.9,
+    "lat": 3.1461,
+    "lon": 101.71191999999999
+   },
+   {
+    "city": "Abu Dhabi",
+    "iso": "ARE",
+    "country": "United Arab Emirates",
+    "region": "Middle East",
+    "n": 6,
+    "n350": 1,
+    "tallest": "Burj Mohammed bin Rashid",
+    "tallest_h": 381.2,
+    "lat": 24.4857,
+    "lon": 54.353534999999994
+   },
+   {
+    "city": "Tianjin",
+    "iso": "CHN",
+    "country": "China",
+    "region": "East Asia",
+    "n": 6,
+    "n350": 0,
+    "tallest": "Tianjin Modern City Office Tower",
+    "tallest_h": 338.0,
+    "lat": 39.12636,
+    "lon": 117.20615
+   },
+   {
+    "city": "Melbourne",
+    "iso": "AUS",
+    "country": "Ashmore and Cartier Islands",
+    "region": "Oceania",
+    "n": 6,
+    "n350": 0,
+    "tallest": "Eureka Tower",
+    "tallest_h": 297.3,
+    "lat": -37.81547,
+    "lon": 144.96263499999998
+   },
+   {
+    "city": "Frankfurt",
+    "iso": "DEU",
+    "country": "Germany",
+    "region": "Europe",
+    "n": 5,
+    "n350": 0,
+    "tallest": "Commerzbank Tower",
+    "tallest_h": 300.1,
+    "lat": 50.11116,
+    "lon": 8.6625
+   },
+   {
+    "city": "Taipei",
+    "iso": "TWN",
+    "country": "Taiwan",
+    "region": "East Asia",
+    "n": 5,
+    "n350": 1,
+    "tallest": "Taipei 101",
+    "tallest_h": 508.0,
+    "lat": 25.0393,
+    "lon": 121.56606
+   },
+   {
+    "city": "Warsaw",
+    "iso": "POL",
+    "country": "Poland",
+    "region": "Europe",
+    "n": 5,
+    "n350": 0,
+    "tallest": "Varso Tower",
+    "tallest_h": 310.0,
+    "lat": 52.23167,
+    "lon": 20.98578
+   },
+   {
+    "city": "Riyadh",
+    "iso": "SAU",
+    "country": "Saudi Arabia",
+    "region": "Middle East",
+    "n": 5,
+    "n350": 1,
+    "tallest": "Public Investment Fund Tower",
+    "tallest_h": 385.0,
+    "lat": 24.74884,
+    "lon": 46.65276
+   },
+   {
+    "city": "Nanjing",
+    "iso": "CHN",
+    "country": "China",
+    "region": "East Asia",
+    "n": 5,
+    "n350": 3,
+    "tallest": "Zifeng Tower",
+    "tallest_h": 450.0,
+    "lat": 32.05197,
+    "lon": 118.77803
+   },
+   {
+    "city": "Suzhou",
+    "iso": "CHN",
+    "country": "China",
+    "region": "East Asia",
+    "n": 4,
+    "n350": 2,
+    "tallest": "Suzhou International Financial Center",
+    "tallest_h": 450.0,
+    "lat": 31.321495,
+    "lon": 120.614585
+   },
+   {
+    "city": "Panama City",
+    "iso": "PAN",
+    "country": "Panama",
+    "region": "Latin America",
+    "n": 4,
+    "n350": 0,
+    "tallest": "Vitri Tower",
+    "tallest_h": 281.0,
+    "lat": 9.01031,
+    "lon": -79.465035
+   },
+   {
+    "city": "Istanbul",
+    "iso": "TUR",
+    "country": "Turkey",
+    "region": "Middle East",
+    "n": 4,
+    "n350": 1,
+    "tallest": "CBRT Tower",
+    "tallest_h": 352.0,
+    "lat": 41.0435,
+    "lon": 29.067185000000002
+   },
+   {
+    "city": "Madrid",
+    "iso": "ESP",
+    "country": "Spain",
+    "region": "Europe",
+    "n": 4,
+    "n350": 0,
+    "tallest": "Torre de Cristal",
+    "tallest_h": 249.0,
+    "lat": 40.477365,
+    "lon": -3.6875
+   },
+   {
+    "city": "London",
+    "iso": "GBR",
+    "country": "United Kingdom",
+    "region": "Europe",
+    "n": 4,
+    "n350": 0,
+    "tallest": "The Shard",
+    "tallest_h": 306.0,
+    "lat": 51.5094,
+    "lon": -0.08146500000000001
+   },
+   {
+    "city": "Guiyang",
+    "iso": "CHN",
+    "country": "China",
+    "region": "East Asia",
+    "n": 4,
+    "n350": 2,
+    "tallest": "Guiyang International Financial Center T1",
+    "tallest_h": 401.0,
+    "lat": 26.5779,
+    "lon": 106.696545
+   },
+   {
+    "city": "Busan",
+    "iso": "KOR",
+    "country": "South Korea",
+    "region": "East Asia",
+    "n": 4,
+    "n350": 1,
+    "tallest": "Haeundae LCT The Sharp Landmark Tower",
+    "tallest_h": 411.6,
+    "lat": 35.15688,
+    "lon": 129.14312999999999
+   },
+   {
+    "city": "Singapore",
+    "iso": "SGP",
+    "country": "Singapore",
+    "region": "Southeast Asia",
+    "n": 4,
+    "n350": 0,
+    "tallest": "Guoco Tower",
+    "tallest_h": 290.0,
+    "lat": 1.28081,
+    "lon": 103.84928
+   },
+   {
+    "city": "Wuxi",
+    "iso": "CHN",
+    "country": "China",
+    "region": "East Asia",
+    "n": 4,
+    "n350": 0,
+    "tallest": "Wuxi IFS",
+    "tallest_h": 339.0,
+    "lat": 31.565215,
+    "lon": 120.303495
+   },
+   {
+    "city": "Sydney",
+    "iso": "AUS",
+    "country": "Ashmore and Cartier Islands",
+    "region": "Oceania",
+    "n": 4,
+    "n350": 0,
+    "tallest": "Crown Sydney",
+    "tallest_h": 300.0,
+    "lat": -33.8664,
+    "lon": 151.20882
+   },
+   {
+    "city": "Wuhan",
+    "iso": "CHN",
+    "country": "China",
+    "region": "East Asia",
+    "n": 4,
+    "n350": 3,
+    "tallest": "Wuhan Greenland Center",
+    "tallest_h": 475.6,
+    "lat": 30.591295000000002,
+    "lon": 114.27436
+   },
+   {
+    "city": "Mumbai",
+    "iso": "IND",
+    "country": "India",
+    "region": "South Asia",
+    "n": 3,
+    "n350": 0,
+    "tallest": "Palais Royale",
+    "tallest_h": 320.0,
+    "lat": 19.0119,
+    "lon": 72.82028
+   },
+   {
+    "city": "Kaohsiung",
+    "iso": "TWN",
+    "country": "Taiwan",
+    "region": "East Asia",
+    "n": 3,
+    "n350": 0,
+    "tallest": "Tuntex Sky Tower",
+    "tallest_h": 323.0,
+    "lat": 22.61167,
+    "lon": 120.30329
+   },
+   {
+    "city": "Nanning",
+    "iso": "CHN",
+    "country": "China",
+    "region": "East Asia",
+    "n": 3,
+    "n350": 2,
+    "tallest": "Guangxi China Resources Tower",
+    "tallest_h": 402.7,
+    "lat": 22.81483,
+    "lon": 108.39114
+   }
+  ],
+  "n_cities": 118,
+  "countries": [
+   {
+    "iso": "CHN",
+    "country": "China",
+    "n": 127
+   },
+   {
+    "iso": "USA",
+    "country": "United States",
+    "n": 93
+   },
+   {
+    "iso": "ARE",
+    "country": "United Arab Emirates",
+    "n": 43
+   },
+   {
+    "iso": "JPN",
+    "country": "Japan",
+    "n": 24
+   },
+   {
+    "iso": "CAN",
+    "country": "Canada",
+    "n": 16
+   },
+   {
+    "iso": "RUS",
+    "country": "Russia",
+    "n": 13
+   },
+   {
+    "iso": "HKG",
+    "country": "Hong Kong",
+    "n": 12
+   },
+   {
+    "iso": "KOR",
+    "country": "South Korea",
+    "n": 12
+   },
+   {
+    "iso": "AUS",
+    "country": "Ashmore and Cartier Islands",
+    "n": 11
+   },
+   {
+    "iso": "TWN",
+    "country": "Taiwan",
+    "n": 10
+   },
+   {
+    "iso": "SAU",
+    "country": "Saudi Arabia",
+    "n": 7
+   },
+   {
+    "iso": "THA",
+    "country": "Thailand",
+    "n": 7
+   },
+   {
+    "iso": "PRK",
+    "country": "North Korea",
+    "n": 6
+   },
+   {
+    "iso": "MYS",
+    "country": "Malaysia",
+    "n": 6
+   },
+   {
+    "iso": "POL",
+    "country": "Poland",
+    "n": 6
+   },
+   {
+    "iso": "TUR",
+    "country": "Turkey",
+    "n": 6
+   },
+   {
+    "iso": "IDN",
+    "country": "Indonesia",
+    "n": 6
+   },
+   {
+    "iso": "MEX",
+    "country": "Mexico",
+    "n": 5
+   },
+   {
+    "iso": "DEU",
+    "country": "Germany",
+    "n": 5
+   },
+   {
+    "iso": "ESP",
+    "country": "Spain",
+    "n": 4
+   },
+   {
+    "iso": "SGP",
+    "country": "Singapore",
+    "n": 4
+   },
+   {
+    "iso": "PAN",
+    "country": "Panama",
+    "n": 4
+   },
+   {
+    "iso": "GBR",
+    "country": "United Kingdom",
+    "n": 4
+   },
+   {
+    "iso": "VNM",
+    "country": "Vietnam",
+    "n": 3
+   },
+   {
+    "iso": "FRA",
+    "country": "France",
+    "n": 3
+   },
+   {
+    "iso": "IND",
+    "country": "India",
+    "n": 3
+   },
+   {
+    "iso": "QAT",
+    "country": "Qatar",
+    "n": 3
+   },
+   {
+    "iso": "ISR",
+    "country": "Israel",
+    "n": 2
+   },
+   {
+    "iso": "ZAF",
+    "country": "South Africa",
+    "n": 2
+   },
+   {
+    "iso": "ITA",
+    "country": "Italy",
+    "n": 2
+   },
+   {
+    "iso": "KWT",
+    "country": "Kuwait",
+    "n": 2
+   },
+   {
+    "iso": "COL",
+    "country": "Colombia",
+    "n": 2
+   },
+   {
+    "iso": "AUT",
+    "country": "Austria",
+    "n": 1
+   },
+   {
+    "iso": "BHR",
+    "country": "Bahrain",
+    "n": 1
+   },
+   {
+    "iso": "BRA",
+    "country": "Brazil",
+    "n": 1
+   },
+   {
+    "iso": "CHE",
+    "country": "Switzerland",
+    "n": 1
+   },
+   {
+    "iso": "CHL",
+    "country": "Chile",
+    "n": 1
+   },
+   {
+    "iso": "BIH",
+    "country": "Bosnia and Herzegovina",
+    "n": 1
+   },
+   {
+    "iso": "EGY",
+    "country": "Egypt",
+    "n": 1
+   },
+   {
+    "iso": "MAC",
+    "country": "Macau",
+    "n": 1
+   },
+   {
+    "iso": "KEN",
+    "country": "Kenya",
+    "n": 1
+   },
+   {
+    "iso": "PAK",
+    "country": "Pakistan",
+    "n": 1
+   },
+   {
+    "iso": "PHL",
+    "country": "Philippines",
+    "n": 1
+   }
+  ],
+  "pre1990": 63,
+  "since2000": 355,
+  "since2000_pct": 76.50862068965517,
+  "since2010": 271,
+  "asia_since2000_pct": 71.83098591549296,
+  "asia_pre1990_pct": 12.698412698412698,
+  "na_pre1990_pct": 73.01587301587301,
+  "asia_n": 287,
+  "asia_pct": 61.853448275862064,
+  "peak_decade": 2010,
+  "peak_n": 212,
+  "china": 140,
+  "usa": 93,
+  "ysrc_open": 426,
+  "ysrc_inc": 819,
+  "ysrc_list": 98,
+  "religious": 82,
+  "first_year": 1883,
+  "first_name": "Palace of Justice of Brussels"
+ },
+ "uc": {
+  "n": 46,
+  "asia": 42,
+  "asia_pct": 91.30434782608695,
+  "china": 29,
+  "uae": 8,
+  "usa": 1,
+  "by_region": {
+   "Middle East": 10,
+   "East Asia": 31,
+   "Latin America": 2,
+   "Africa": 1,
+   "North America": 1,
+   "Southeast Asia": 1
+  },
+  "jeddah_h": 1008.0,
+  "jeddah_planned": 2028,
+  "jeddah_floors": "167+",
+  "jeddah_x_burj": 1.2173913043478262,
+  "jeddah_over_burj_m": 180.0,
+  "azizi_h": 725.0,
+  "azizi_planned": 2030,
+  "over600": 2
+ },
+ "continents": [
+  {
+   "continent": "Asia",
+   "name": "Burj Khalifa",
+   "h": 828.0,
+   "year": 2010,
+   "country": "United Arab Emirates",
+   "city": "Dubai"
+  },
+  {
+   "continent": "North America",
+   "name": "One World Trade Center",
+   "h": 541.3,
+   "year": 2014,
+   "country": "United States",
+   "city": "New York City"
+  },
+  {
+   "continent": "Europe",
+   "name": "Lakhta Center",
+   "h": 462.0,
+   "year": 2018,
+   "country": "Russia",
+   "city": "Saint Petersburg"
+  },
+  {
+   "continent": "Africa",
+   "name": "Iconic Tower",
+   "h": 393.8,
+   "year": 2023,
+   "country": "Egypt",
+   "city": "New Administrative Capital"
+  },
+  {
+   "continent": "Oceania",
+   "name": "Q1 Tower",
+   "h": 323.0,
+   "year": 2005,
+   "country": "Australia",
+   "city": "Gold Coast"
+  },
+  {
+   "continent": "South America",
+   "name": "Gran Torre Costanera",
+   "h": 300.0,
+   "year": 2012,
+   "country": "Chile",
+   "city": "Santiago"
+  },
+  {
+   "continent": "Antarctica",
+   "name": "Vostok Station",
+   "h": 17.5,
+   "year": 2023,
+   "country": "Russia",
+   "city": "-"
+  }
+ ],
+ "defs": {
+  "list_min": 350,
+  "wd_min": 100,
+  "map_min": 100
+ },
+ "retrieved": "2026",
+ "head": {
+  "burj_h": 828.0,
+  "lincoln_years": 238,
+  "nyc_years": 65,
+  "pyr_years": 3870,
+  "n200": 464,
+  "list_asia": 81,
+  "jed_h": 1008.0
+ }
+}

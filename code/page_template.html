@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The World's Tallest Building</title>
+<meta name="description" content="Every holder of the title of world's tallest building, from the Great Pyramid and Lincoln Cathedral to the Burj Khalifa and Jeddah Tower, how long each city held it, and a map of {{wd.n_counted|int}} of today's tall buildings.">
+<meta property="og:title" content="The world's tallest building: who held the record, for how long, and where the skyscrapers are now">
+<meta property="og:description" content="Lincoln Cathedral held the record for {{records.lincoln_years|int}} years, New York for {{records.nyc_years|int}}. {{list350.asia|int}} of the {{list350.n|int}} buildings of 350 m or more are in Asia, and Jeddah Tower is planned at {{uc.jeddah_h|int}} m.">
+<meta property="og:image" content="https://maps.tristanhotham.com/tallest-buildings/header.png">
+<meta property="og:url" content="https://maps.tristanhotham.com/tallest-buildings/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800;9..144,900&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+/* Skyline: warm paper, stone, steel blue and record red. */
+:root{
+  --bg:#F7F3EA; --panel:#EDE7DA; --fg:#1E1B18; --muted:#6B6660; --rule:#E0D8C8; --card:#FFFDF8; --border:#CFC6B4;
+  --hot:#B3122E; --cool:#1F3B63; --gold:#C8932B; --ink:#1F3B63; --land:#E4DDCE; --sea:#EEF1F0;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#15130F; --panel:#211E19; --fg:#EFEAE1; --muted:#ABA398; --rule:#37322A; --card:#1B1814; --border:#4A443A;
+  --hot:#FF6B7F; --cool:#9DB9E0; --gold:#E7B65A; --ink:#9DB9E0; --land:#2A2621; --sea:#181614; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#15130F; --panel:#211E19; --fg:#EFEAE1; --muted:#ABA398; --rule:#37322A; --card:#1B1814; --border:#4A443A;
+  --hot:#FF6B7F; --cool:#9DB9E0; --gold:#E7B65A; --ink:#9DB9E0; --land:#2A2621; --sea:#181614; color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 18px/1.62 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));overflow-x:hidden}
+.wrap{max-width:700px;margin:0 auto;padding-block:28px 64px}
+.wrap .bleed{width:min(1180px,calc(100vw - 32px));margin-left:calc((100% - min(1180px,100vw - 32px))/2);margin-right:0}
+a{color:inherit;text-decoration-color:var(--hot);text-underline-offset:3px}
+.kicker{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.kicker b{background:var(--ink);color:var(--bg);padding:5px 8px;font-weight:500}
+header.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px 24px;align-items:end;border-bottom:6px double var(--fg);padding-bottom:22px;margin-top:18px}
+h1{font:900 clamp(44px,11vw,94px)/.9 var(--display);letter-spacing:-.02em;margin:0;text-wrap:balance}
+h1 .a{color:var(--hot)} h1 .b{color:var(--cool)}
+.mark{width:clamp(78px,16vw,128px);height:auto;display:block;color:var(--fg)}
+.dek{grid-column:1/-1;font-size:21px;line-height:1.42;margin:8px 0 0;max-width:56ch}
+.byline{font:400 13px/1.4 var(--mono);color:var(--muted);margin-top:14px}
+h2{font:800 34px/1.04 var(--display);letter-spacing:-.01em;margin:54px 0 10px;text-wrap:balance}
+h2 .n{font:500 13px/1 var(--mono);color:var(--hot);display:block;letter-spacing:.1em;margin-bottom:10px}
+h3{font:600 21px/1.25 var(--display);margin:30px 0 6px}
+h3 i.sw{display:inline-block;width:14px;height:14px;border-radius:50%;margin-right:8px;vertical-align:0}
+p{margin:0 0 16px}
+.lede::first-letter{font:900 72px/.8 var(--display);float:left;margin:6px 10px 0 0;color:var(--hot)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:26px 0 8px}
+.stats div{background:var(--card);padding:14px 12px}
+.stats b{display:block;font:900 clamp(22px,4.4vw,32px)/1 var(--display);letter-spacing:-.01em}
+.stats b.h{color:var(--hot)} .stats b.c{color:var(--cool)} .stats b.g{color:var(--gold)} .stats b.p{color:var(--ink)}
+.stats span{font:400 12px/1.35 var(--mono);color:var(--muted);display:block;margin-top:6px}
+@media (max-width:600px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.figure{margin:26px 0 30px}
+.fig-h{font:600 19px/1.25 var(--display);margin:0 0 4px}
+.fig-sub{font:400 13px/1.45 var(--mono);color:var(--muted);margin:0 0 12px}
+.src{font:400 12px/1.45 var(--mono);color:var(--muted);margin-top:10px}
+.chart{width:100%;position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+svg text{font-family:var(--mono);fill:var(--fg)}
+.lab{font-size:12px}.halo{paint-order:stroke;stroke:var(--bg);stroke-width:4px;stroke-linejoin:round}.lab.m{fill:var(--muted)}.lab.b{font-weight:500}.lab.s{font-size:11px}
+.tip{position:absolute;pointer-events:none;background:var(--fg);color:var(--bg);font:400 12px/1.45 var(--mono);padding:8px 10px;border-radius:3px;max-width:300px;z-index:100001;transform:translate(-50%,calc(-100% - 12px));display:none}
+.tip b{font-weight:500}
+.controls{display:flex;gap:8px;align-items:center;margin:0 0 10px;flex-wrap:wrap}
+.scrollrow{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;padding-bottom:2px;max-width:100%}
+.scrollrow .btn{flex:0 0 auto;white-space:nowrap}
+.ctl-l{font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:2px;flex:0 0 auto;align-self:center}
+.btn{font:500 12px/1 var(--mono);background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:3px;padding:8px 10px;cursor:pointer;min-height:36px}
+.btn[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px;border:1px solid rgba(0,0,0,.2)}
+.btn:focus-visible,input:focus-visible,summary:focus-visible,select:focus-visible{outline:2px solid var(--hot);outline-offset:2px}
+.btn.play{background:var(--hot);color:#fff;border-color:var(--hot);min-width:92px}
+select.btn{padding:6px 8px;max-width:100%}
+.searchbox{position:relative;flex:1 1 260px;min-width:0}
+input[type=search]{font:400 15px/1 var(--mono);background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:3px;padding:10px 11px;min-height:40px;width:100%}
+.suggest{position:absolute;left:0;right:0;top:100%;margin:2px 0 0;padding:0;list-style:none;background:var(--card);border:1px solid var(--border);z-index:1001;font:400 13px/1.3 var(--mono);display:none;max-height:340px;overflow:auto}
+.suggest li{padding:8px 10px;cursor:pointer;border-bottom:1px solid var(--rule)}
+.suggest li span{color:var(--muted)}
+.suggest li[aria-selected="true"],.suggest li:hover{background:var(--panel)}
+.yearbox{display:grid;grid-template-columns:auto auto minmax(0,1fr) auto;gap:10px;align-items:center;margin:0 0 10px;font:500 13px/1 var(--mono)}
+.yearbox .yv{font:800 22px/1 var(--display);min-width:4.2ch;text-align:center}
+@media (max-width:600px){.yearbox{grid-template-columns:auto minmax(0,1fr) auto}.yearbox .play{grid-column:1/-1;justify-self:start}}
+.dual{position:relative;height:34px}
+.dual input[type=range]{position:absolute;left:0;right:0;top:4px;width:100%;pointer-events:none;-webkit-appearance:none;appearance:none;background:none;margin:0;height:26px}
+.dual input[type=range]::-webkit-slider-thumb{pointer-events:auto;-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--hot);border:2px solid var(--card);cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.dual input[type=range]::-moz-range-thumb{pointer-events:auto;width:18px;height:18px;border-radius:50%;background:var(--hot);border:2px solid var(--card);cursor:pointer}
+.dual .track{position:absolute;left:0;right:0;top:15px;height:4px;background:var(--rule);border-radius:2px}
+.dual .fill{position:absolute;top:15px;height:4px;background:var(--hot);border-radius:2px}
+.mapgrid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:14px;align-items:start}
+@media (max-width:900px){.mapgrid{grid-template-columns:1fr}}
+.side{background:var(--card);border:1px solid var(--border);padding:12px 12px 10px;font:400 13px/1.45 var(--mono);max-height:660px;overflow:auto}
+@media (max-width:900px){.side{max-height:none}}
+.side h4{font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:14px 0 8px}
+.side h4:first-child{margin-top:2px}
+.side .big{font:800 26px/1.1 var(--display);margin:2px 0 4px}
+.side .sub{color:var(--muted);font-size:12px;margin:0 0 8px}
+.side ol,.side ul{margin:4px 0 8px;padding-left:20px}
+.side li{margin:3px 0}
+.side li small,.side td small{color:var(--muted)}
+.side table{width:100%;border-collapse:collapse;margin:4px 0 6px}
+.side td{padding:4px 4px 4px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.side td.num{text-align:right;white-space:nowrap}
+.side .desc{font:400 13px/1.5 var(--body);background:var(--panel);padding:8px 10px;margin:8px 0}
+.back{font:400 12px var(--mono);background:none;border:0;color:var(--muted);padding:0;cursor:pointer;text-decoration:underline;margin-bottom:6px}
+.go{cursor:pointer;text-decoration:underline;text-decoration-color:var(--border);text-underline-offset:3px}
+.lmap{height:640px;border:1px solid var(--border);background:var(--sea);border-radius:2px}
+@media (max-width:600px){.lmap{height:min(62vh,470px)}}
+.leaflet-container{font:400 12px/1.4 var(--mono);background:var(--sea)}
+.dotcanvas{position:absolute;left:0;top:0;pointer-events:none}
+.lyrBtn{background:var(--card,var(--bg));color:var(--fg);border:1px solid var(--border);border-radius:3px;font:600 12px/1 var(--mono);padding:8px 10px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.lyrBtn[aria-expanded="true"]{background:var(--fg);color:var(--bg)}
+.lyrPanel{background:var(--card,var(--bg));color:var(--fg);border:1px solid var(--border);border-radius:3px;padding:10px 12px 8px;margin-top:6px;width:250px;box-shadow:0 2px 10px rgba(0,0,0,.15);font:400 12px/1.3 var(--mono);max-height:min(70vh,520px);overflow:auto}
+.lyrPanel[hidden]{display:none}
+.lyrPanel .row{margin:0 0 9px}
+.lyrPanel label{display:flex;gap:6px;align-items:center;cursor:pointer;font-weight:600}
+.lyrPanel input[type=range]{width:100%;accent-color:var(--fg)}
+.lyrPanel select{font:400 12px var(--mono);background:var(--bg);color:var(--fg);border:1px solid var(--border);border-radius:2px;padding:2px 4px;width:100%;min-height:0}
+.lyrPanel .sub{display:flex;gap:6px;align-items:center;color:var(--muted);font-size:11px;margin-top:3px}
+.lyrPanel .sub span{flex:0 0 58px}
+.lyrPanel .hd{font:500 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:10px 0 7px;border-top:1px solid var(--rule);padding-top:9px}
+.lyrPanel .reset{font:400 11px var(--mono);color:var(--muted);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline}
+.cityL{font:500 11px/1 var(--mono);color:var(--fg);white-space:nowrap;text-shadow:0 0 3px var(--bg),0 0 3px var(--bg),0 0 2px var(--bg);pointer-events:none}
+.cityL i{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--fg);margin-right:4px;vertical-align:1px}
+.cityL.s{font-size:10px;font-weight:400}
+.cntL{font:700 11px/1 var(--mono);color:var(--fg);white-space:nowrap;text-transform:uppercase;letter-spacing:.06em;opacity:.75;text-shadow:0 0 3px var(--bg),0 0 3px var(--bg);pointer-events:none;text-align:center}
+.boxL{font:600 11px/1.2 var(--mono);color:var(--fg);white-space:nowrap;text-shadow:0 0 3px var(--bg),0 0 3px var(--bg);pointer-events:none}
+.mapnote{background:color-mix(in srgb,var(--card) 92%,transparent);border:1px solid var(--border);border-radius:3px;padding:6px 9px;font:400 12px/1.35 var(--mono);max-width:min(300px,62vw);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.mapnote b{font-weight:600}
+.mapnote:empty{display:none}
+.yearBadge{font:900 44px/1 var(--display);color:var(--fg);text-shadow:0 0 6px var(--bg),0 0 3px var(--bg);pointer-events:none;margin:6px 0 0 4px}
+.yearBadge small{display:block;font:500 12px/1.3 var(--mono);color:var(--fg);margin-top:4px}
+.yearBadge:empty{display:none}
+.leaflet-bar a,.leaflet-bar a:hover{background:var(--card);color:var(--fg);border-bottom-color:var(--border)}
+.leaflet-control-attribution{background:color-mix(in srgb,var(--card) 85%,transparent)!important;color:var(--muted)}
+.leaflet-control-attribution a{color:var(--fg)}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--card);color:var(--fg)}
+.leaflet-popup-content{font:400 12.5px/1.45 var(--mono);margin:10px 12px}
+.leaflet-popup-content b{font:700 15px/1.2 var(--display)}
+.legend{display:flex;gap:6px 14px;flex-wrap:wrap;font:400 12px/1.3 var(--mono);color:var(--muted);margin-top:8px;align-items:center}
+.legend span{display:inline-flex;align-items:center}
+.legend i{display:inline-block;width:13px;height:13px;margin-right:6px;border-radius:50%;border:1px solid rgba(0,0,0,.15)}
+.legend i.sq{border-radius:2px}
+.legend i.hx{border-radius:0;clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);border:0;width:15px}
+.legend .ramp{display:inline-block;width:150px;height:12px;border-radius:2px;margin:0 6px;border:1px solid rgba(0,0,0,.1)}
+.pull{font:600 26px/1.25 var(--display);border-left:6px solid var(--hot);padding:4px 0 4px 18px;margin:30px 0}
+.note{background:var(--panel);border:1px solid var(--rule);padding:14px 16px;font-size:16px;margin:22px 0}
+.note h3{margin-top:0}
+table.tbl{width:100%;border-collapse:collapse;font:400 13px/1.4 var(--mono)}
+table.tbl th{font:500 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:left;padding:6px 6px 6px 0;border-bottom:2px solid var(--fg)}
+table.tbl td{padding:6px 6px 6px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+table.tbl td.r,table.tbl th.r{text-align:right;white-space:nowrap}
+.tablebox{overflow:auto;border:1px solid var(--border);background:var(--card);padding:0 10px}
+.eragrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:900px){.eragrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.eragrid{grid-template-columns:1fr}}
+.erabox{background:var(--card);border:1px solid var(--border);padding:10px 10px 6px}
+.erabox h4{font:800 18px/1.1 var(--display);margin:0 0 2px}
+.erabox p{font:400 11.5px/1.35 var(--mono);color:var(--muted);margin:0 0 6px}
+.erabox .row{display:grid;grid-template-columns:minmax(0,1fr) 34px;gap:6px;align-items:center;font:400 12px/1.25 var(--mono);padding:3px 0;cursor:pointer}
+.erabox .row:hover .nm{text-decoration:underline}
+.erabox .bar{height:7px;border-radius:2px;margin-top:3px}
+.erabox .v{text-align:right;font-weight:500}
+.today{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}
+@media (max-width:700px){.today{grid-template-columns:1fr}}
+.today div{background:var(--card);border:1px solid var(--border);border-top:5px solid var(--c,var(--fg));padding:12px}
+.today b{display:block;font:900 30px/1 var(--display);color:var(--c,var(--fg))}
+.today span{display:block;font:400 12px/1.4 var(--mono);color:var(--muted);margin-top:6px}
+.today h4{font:600 16px/1.2 var(--display);margin:0 0 8px}
+details{margin:14px 0}
+summary{font:500 13px/1.4 var(--mono);cursor:pointer;color:var(--fg);padding:8px 0}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.cta a{font:500 13px/1 var(--mono);text-decoration:none;border:1px solid var(--fg);padding:11px 14px;border-radius:3px}
+.cta a.p{background:var(--hot);border-color:var(--hot);color:#fff}
+footer{border-top:6px double var(--fg);margin-top:56px;padding-top:16px;font:400 13px/1.55 var(--mono);color:var(--muted)}
+footer p{margin:0 0 10px}
+.theme{position:fixed;right:12px;bottom:12px;z-index:1002}
+@media print{.theme,.controls{display:none}}
+
+.hscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.hscroll svg{min-width:860px}
+.slider{display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:12px;align-items:center;margin:0 0 10px}
+.slider input[type=range]{width:100%;accent-color:var(--hot);height:28px}
+.slider .yv{font:900 26px/1 var(--display);min-width:6.5ch}
+@media (max-width:600px){.slider{grid-template-columns:auto minmax(0,1fr)}.slider input{grid-column:1/-1}}
+.titlebox{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 10px}
+@media (max-width:600px){.titlebox{grid-template-columns:1fr}}
+.titlebox div{background:var(--card);border:1px solid var(--border);border-left:7px solid var(--c,var(--fg));padding:8px 11px;font:400 12.5px/1.4 var(--mono)}
+.titlebox h5{margin:0 0 3px;font:500 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.titlebox b{font:800 18px/1.15 var(--display);display:block}
+.recL{font:700 11px/1.15 var(--mono);color:var(--fg);white-space:nowrap;text-shadow:0 0 3px var(--bg),0 0 3px var(--bg),0 0 2px var(--bg);pointer-events:none}
+.recL small{font-weight:400;color:var(--muted)}
+.ucard{display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;align-items:center;background:var(--card);border:1px solid var(--border);padding:14px;margin:18px 0}
+.ucard b{font:900 34px/1 var(--display);color:var(--hot)}
+.ucard p{margin:6px 0 0;font:400 13px/1.5 var(--mono);color:var(--muted)}
+.defs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}
+@media (max-width:760px){.defs{grid-template-columns:1fr}}
+.defs div{background:var(--card);border:1px solid var(--border);border-top:5px solid var(--c,var(--fg));padding:12px;font:400 13px/1.5 var(--mono)}
+.defs h4{font:700 17px/1.2 var(--display);margin:0 0 6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="kicker"><b>Data study</b><span>Architecture</span><span>World, c. 2560 BC to 2026</span></div>
+<header class="hero">
+  <h1>The world's <span class="a">tallest</span> <span class="b">building</span></h1>
+  <svg class="mark" viewBox="0 0 120 130" aria-hidden="true"><g id="heroMark"></g></svg>
+  <p class="dek">For almost four thousand years the tallest thing people had built was a tomb in Egypt. Then came the spires of Lincoln, Stralsund and Strasbourg, the skyscrapers of New York and Chicago, and since 1998 the towers of Asia. Who held the record, for how long, and where the world's tall buildings stand today.</p>
+</header>
+<div class="byline">Dr Tristan Hotham · Independent researcher · 2026 · Data: English Wikipedia; Wikidata; Natural Earth</div>
+
+<div class="stats">
+  <div><b class="g">{{records.lincoln_years|int}} years</b><span>Lincoln Cathedral's reign, {{records.lincoln_h|f1}} m, 1311 to 1549: the longest of any building</span></div>
+  <div><b class="c">{{records.nyc_years|int}} years</b><span>New York City held the title, 1908 to 1973; the United States {{records.us_years|int}} years</span></div>
+  <div><b class="h">{{list350.asia|int}} of {{list350.n|int}}</b><span>buildings of 350 m or more are in Asia; {{list350.since2010|int}} were finished since 2010</span></div>
+  <div><b>{{uc.jeddah_h|int}} m</b><span>Jeddah Tower's planned height, under construction, completion planned for {{uc.jeddah_planned|raw}}</span></div>
+</div>
+
+<p class="lede">Ask which is the tallest building in the world and the answer, since 2010, is easy: the Burj Khalifa in Dubai, {{records.burj_h|int}} m. Ask which was the tallest building in 1500, or 1890, or 1970, and the answer depends on what you call a building, how you measure it and which spire was still standing. I followed the title through Wikipedia's history of the record, from the Great Pyramid of Giza to the cathedrals of medieval Europe, the race up Manhattan and the move to Asia, and put every holder on a map beside {{wd.n_counted|int}} of today's tall buildings from Wikidata and Wikipedia.</p>
+<p>The record has moved between {{records.n_cities|int}} cities. Lincoln held it longest, then Strasbourg. For a century it belonged to the United States. Since 1998 it has been in Asia, and the next holder is already rising in Jeddah.</p>
+
+<h2><span class="n">01 · The map</span>Where the record went</h2>
+<p>Drag the slider or press play to follow the title through time. The two boxes show the tallest building and the tallest structure of any kind at that moment, because for long stretches they were not the same thing: the Great Pyramid and the Eiffel Tower held the record for structures but were never buildings. The dots are tall buildings of 100 m or more, coloured by the decade they were finished, and only the ones finished by the slider's year appear (buildings since demolished are not included). Click anything for details.</p>
+<div class="bleed" id="atlas">
+<div class="slider"><button class="btn play" id="play" aria-label="Play the record through time">▶ Play</button><span class="yv" id="yv">2026</span><input type="range" id="step" min="0" max="1" step="1" value="1" aria-label="Moment in the history of the record"></div>
+<div class="titlebox"><div id="tbB"></div><div id="tbS"></div></div>
+<div class="controls">
+  <div class="scrollrow" id="showRow"><span class="ctl-l">Show</span><button class="btn" data-v="both" aria-pressed="true">Buildings and structures</button><button class="btn" data-v="b" aria-pressed="false">Tallest building</button><button class="btn" data-v="s" aria-pressed="false">Tallest structure</button></div>
+</div>
+<div class="controls">
+  <div class="scrollrow" id="minRow"><span class="ctl-l">Dots</span><button class="btn" data-m="100" aria-pressed="true">100 m and over</button><button class="btn" data-m="200" aria-pressed="false">200 m and over</button><button class="btn" data-m="350" aria-pressed="false">350 m and over</button></div>
+  <div class="scrollrow" id="colRow"><span class="ctl-l">Colour</span><button class="btn" data-c="dec" aria-pressed="true">Decade finished</button><button class="btn" data-c="reg" aria-pressed="false">Region</button></div>
+</div>
+<div class="controls">
+  <div class="searchbox"><input type="search" id="q" placeholder="Search a building or a city" aria-label="Search a building or a city" autocomplete="off"><ul class="suggest" id="sug" role="listbox"></ul></div>
+</div>
+<div class="controls"><div class="scrollrow" id="focusRow"><span class="ctl-l">Zoom to</span></div></div>
+<div class="mapgrid">
+  <div><div id="map" class="lmap" role="application" aria-label="Map of the world's tallest buildings and the record-holders"></div>
+    <div class="legend" id="legend"></div></div>
+  <div class="side" id="side" aria-live="polite"></div>
+</div>
+<p class="src">Record-holders: English Wikipedia, 'History of the world's tallest buildings' (tables for buildings; text for the pyramid, the Washington Monument and the Eiffel Tower; the pyramid's date from Wikidata). Dots: {{wd.n_counted|int}} buildings of 100 m or more from Wikidata after unit checks, with the List page's {{list350.n|int}} buildings of 350 m or more ({{list350.placed_city|int}} of them, missing from Wikidata, at their city centre). United States records whose height could not be checked are hidden unless you turn them on under Map layers. Year: official opening, else inception, in Wikidata. Outlines: Natural Earth. Base map tiles © Esri.</p>
+</div>
+
+<h2><span class="n">02 · The record</span>From the pyramid to the Burj</h2>
+<p>Here is every holder of the title, drawn to the same scale of height in the order they took it. Filled shapes are buildings in the sense Wikipedia's history uses, which counts churches and cathedrals; hatched shapes are structures that held the overall record but were not buildings. The outline on the right is Jeddah Tower, which the List page shows under construction at a planned {{uc.jeddah_h|int}} m.</p>
+<div class="figure bleed"><p class="fig-h">Every tallest building, to scale</p><p class="fig-sub">Heights from the Wikipedia tables; outlines are simplified sketches. Hover for the years each held the title.</p><div class="chart hscroll" id="skyline"></div><div class="legend" id="skyLegend"></div></div>
+<p>The Great Pyramid of Giza, {{records.pyr_h|f1}} m when new, was the tallest structure in the world for over 3,800 years, about {{records.pyr_years|int}} if it was finished around 2560 BC, as Wikidata gives. But it is a tomb, not a building, and Wikipedia's history says the tallest buildings before the 14th century cannot be determined. The first building on its list is London's Old St Paul's Cathedral ({{records.stpaul_h|int}} m, 13th century to 1311), overtaken by Lincoln Cathedral, whose spire reached {{records.lincoln_h|f1}} m in 1311. Lincoln's spire stood for {{records.lincoln_years|int}} years until it collapsed in 1549, the longest reign of any building.</p>
+<p>Collapse and fire then handed the title around northern Europe: to St Mary's in Stralsund, to Beauvais Cathedral (whose tower fell four years later), back to Stralsund until its bell tower burned in 1647, and then to Strasbourg Cathedral, which held it for {{records.stras_years|int}} years at {{records.strasbourg_h|int}} m, the shortest record-holder of all. Hamburg, Rouen, Cologne and Ulm followed in a burst of 19th century spires. Ulm Minster, {{records.ulm_h|f1}} m in 1890, was the last church to hold the record.</p>
+<p>Then the skyscraper. Philadelphia City Hall took the title in 1894, and from 1908 to 1973 it never left Manhattan: the Singer Building, the Metropolitan Life Tower, the Woolworth Building, 40 Wall Street and the Chrysler Building (both in 1930), the Empire State Building, which held it for {{records.esb_years|int}} years, and the World Trade Center. Chicago's Sears Tower took it in 1973. In 1998 the Petronas Towers in Kuala Lumpur ended a century of American records, Taipei 101 followed in 2004, and in 2010 the Burj Khalifa beat Taipei 101 by {{records.burj_jump_m|int}} m, {{records.burj_jump_pct|pc}}, the biggest jump in the record's history.</p>
+<div class="figure"><p class="fig-h">How long each city held the record</p><p class="fig-sub">Years as home of the world's tallest building, 1311 to 2026, from Wikipedia's tables (the pyramid is a structure, so it is shown apart). Hover a block.</p><div class="chart" id="ribbon"></div><div class="chart" id="cityYears"></div></div>
+<p>Count the years and the medieval cathedrals dominate: churches held the title for {{records.church_years|int}} of the {{records.span_years|int}} years since 1311 ({{records.church_pct|pc}}). Lincoln ({{records.lincoln_years|int}} years), Strasbourg ({{records.stras_years|int}}) and Stralsund ({{records.stral_years|int}}) lead, ahead of New York ({{records.nyc_years|int}}), Chicago ({{records.chi_years|int}}) and Dubai ({{records.dubai_years|int}} so far). Wikipedia's introduction says New York held the record for {{records.intro_nyc|int}} years and Chicago for {{records.intro_chi|int}}, but its own table gives {{records.nyc_years|int}} and {{records.chi_years|int}}; I use the table.</p>
+
+<h2><span class="n">03 · Buildings, towers and masts</span>What counts as a building?</h2>
+<p>"Tallest building" sounds simple. It is not, and the two Wikipedia pages behind this study use different rules, so I say which one each part of the page uses.</p>
+<div class="defs">
+  <div style="--c:var(--gold)"><h4>History of the record</h4>Wikipedia's 'History of the world's tallest buildings' calls a building something regularly inhabited or occupied, and "treats churches and cathedrals as buildings", although much of their height is in spires. Heights follow the CTBUH's default: the architectural top, including spires but not antennas, masts or flagpoles.</div>
+  <div style="--c:var(--ink)"><h4>Today's tallest</h4>Wikipedia's 'List of tallest buildings' counts enclosed structures with continuously occupiable floors, at least 350 m to the highest architectural feature, completed or architecturally topped out: {{list350.n|int}} buildings. Radio towers and other non-building structures are left out.</div>
+  <div style="--c:var(--hot)"><h4>Structures</h4>The Great Pyramid, the Washington Monument ({{records.wm_h|int}} m, 1884), the Eiffel Tower ({{records.eiffel_h|int}} m, 1889) and later the radio and television masts were the tallest structures but not buildings: you cannot live or work up there. Since 1884 the tallest structure has also been the tallest building only from 1930 to 1954, and again since 2010.</div>
+</div>
+<p>Even the buildings argue. In 1930 the Chrysler Building secretly assembled its spire inside the building and hoisted it to beat 40 Wall Street, whose top floor was higher. In 1996 the Petronas Towers were ranked above the Sears Tower because their spires count and the Sears Tower's antennas do not. And the medieval heights are uncertain: Lincoln's {{records.lincoln_h|f1}} m is "disputed by some, but accepted by most sources", and Christopher Wren put Old St Paul's spire at 140 m, not {{records.stpaul_h|int}} m. The dots on the map come from a third source, Wikidata, which I cleaned as described in section 07.</p>
+
+<h2><span class="n">04 · The boom</span>Asia rises</h2>
+<p>For most of the 20th century tall buildings were an American story. In 1930, says Wikipedia, 99 of the world's 100 tallest buildings were in North America. Among the {{wd.n200|int}} buildings of 200 m or more that I could check in Wikidata, {{wd.na_pre1990_pct|pc}} of those finished before 1990 are in North America. Then Asia takes over: its share of new 200 m buildings rises from {{wd.asia_share.1980|pc}} in the 1980s to {{wd.asia_share.1990|pc}} in the 1990s and {{wd.asia_share.2010|pc}} in the 2010s, the busiest decade by far, with {{wd.tot.2010|int}} completions.</p>
+<div class="figure"><p class="fig-h">Tall buildings finished per decade, by region</p><p class="fig-sub">Buildings of 200 m or more in Wikidata after unit checks, or the {{list350.n|int}} buildings of 350 m or more on Wikipedia's list. The figure above each bar is Asia's share (including the Middle East). The 2020s run to 2026. Hover a bar.</p>
+<div class="controls"><div class="scrollrow" id="boomMode"><span class="ctl-l">Set</span><button class="btn" data-m="wd" aria-pressed="true">200 m and over (Wikidata)</button><button class="btn" data-m="list" aria-pressed="false">350 m and over (complete list)</button></div></div>
+<div class="chart" id="boom"></div><div class="legend" id="boomLegend"></div></div>
+<p>The complete list of the very tallest tells the same story more sharply. Of the {{list350.n|int}} buildings of 350 m or more, {{list350.asia|int}} ({{list350.asia_pct|pc}}) are in Asia: {{list350.ea|int}} in East Asia, {{list350.me|int}} in the Middle East and {{list350.sea|int}} in Southeast Asia. North America has {{list350.na|int}}, Europe {{list350.europe|int}} and Africa {{list350.africa|int}}. {{list350.since2010|int}} were finished in 2010 or later, and only {{list350.before2000|int}} before 2000; the oldest is still the Empire State Building of 1931.</p>
+
+<h2><span class="n">05 · Where they are now</span>The skyscraper cities</h2>
+<p>Wikidata, after my checks, lists the most buildings of 200 m or more in {{wd.cities.0.city|raw}} ({{wd.cities.0.n|int}}), {{wd.cities.1.city|raw}} ({{wd.cities.1.n|int}}) and {{wd.cities.2.city|raw}} ({{wd.cities.2.n|int}}), then {{wd.cities.3.city|raw}} ({{wd.cities.3.n|int}}) and {{wd.cities.4.city|raw}} ({{wd.cities.4.n|int}}). That ranking is a ranking of records as much as of buildings. Wikidata is patchy for China: {{list350.missing_cn|int}} of the List's {{list350.china_hk|int}} buildings of 350 m or more in China and Hong Kong ({{list350.missing_cn_pct|pc}}) are missing from the extract, against {{list350.missing_other|int}} of the other {{list350.n_other|int}} ({{list350.missing_other_pct|pc}}), and the gaps are surely wider lower down. The complete list of 350 m buildings is more trustworthy for the very top, and it puts {{list350.cities.0.city|raw}} first with {{list350.cities.0.n|int}}, then {{list350.cities.1.city|raw}} ({{list350.cities.1.n|int}}) and {{list350.cities.2.city|raw}} ({{list350.cities.2.n|int}}).</p>
+<div class="figure"><p class="fig-h">Cities with the most tall buildings</p><p class="fig-sub">Bars: buildings of 200 m or more in Wikidata after unit checks. Dark marks: how many of them are 350 m or more (from the complete list). Hover a bar; click to see the city on the map.</p>
+<div class="controls"><div class="scrollrow" id="cityMode"><span class="ctl-l">Rank by</span><button class="btn" data-m="n" aria-pressed="true">200 m and over</button><button class="btn" data-m="n350" aria-pressed="false">350 m and over</button></div></div>
+<div class="chart" id="cities"></div></div>
+<p class="pull">For {{records.lincoln_years|int}} years the tallest building in the world stood in Lincoln.</p>
+
+<h2><span class="n">06 · What comes next</span>A kilometre in Jeddah</h2>
+<div class="ucard"><svg viewBox="0 0 110 160" aria-hidden="true" id="jedMark"></svg><div><b>{{uc.jeddah_h|int}} m</b><p>Jeddah Tower, Saudi Arabia: planned architectural height {{uc.jeddah_h|int}} m, {{uc.jeddah_floors|raw}} floors, planned completion {{uc.jeddah_planned|raw}}, listed under construction on Wikipedia's 'List of tallest buildings'. If it is finished as planned it will be {{uc.jeddah_over_burj_m|int}} m taller than the Burj Khalifa and the first building of a kilometre.</p></div></div>
+<p>The same page lists {{uc.n|int}} buildings of 350 m or more under construction. {{uc.asia|int}} of them are in Asia, {{uc.china|int}} in China alone, and two would pass 600 m: Jeddah Tower and Dubai's Burj Azizi ({{uc.azizi_h|int}} m, planned for {{uc.azizi_planned|raw}}). Only {{uc.usa|int}} is in the United States. I use only what the page says about their status: planned heights and dates change, and some towers stall for years.</p>
+<div class="tablebox"><table class="tbl" id="ucTable"></table></div>
+
+<h2><span class="n">07 · How I did this</span>Methods and caveats</h2>
+<p><b>Record-holders.</b> The two tables of Wikipedia's 'History of the world's tallest buildings' give each holder's years, city and height: {{records.n_church|int}} rows for churches and cathedrals and {{records.n_sky|int}} for skyscrapers ({{records.n_buildings|int}} buildings; St Mary's in Stralsund appears twice). The structures track (the pyramid, the churches, the Washington Monument, the Eiffel Tower, the Chrysler and Empire State Buildings, the masts, the Burj Khalifa) follows the page's text. Neither page dates the Great Pyramid, so I use Wikidata's date, 2560 BC, which fits the page's "over 3,800 years". Years held run from one record to the next, with 2026 as the end of the Burj Khalifa's reign so far. Positions come from Wikidata, except Lincoln and Beauvais cathedrals, entered by hand, and the original World Trade Center, shown on its site.</p>
+<p><b>Today's buildings.</b> The Wikidata extract holds {{wd.n_items|int}} structures with a height of 100 or more. Heights came without units, and many are feet or centimetres, so I kept only buildings (skyscrapers, offices, hotels, homes, churches and other occupied buildings: {{wd.drop_notbuilding|int}} towers, bridges, dams, memorials and the like left out), dropped {{wd.drop_dead|int}} unfinished or destroyed ones, {{wd.drop_830|int}} taller than the Burj Khalifa and {{wd.drop_noyear|int}} without a year. Buildings of 350 m or more had to be on the List page's complete table, which then supplied their height, year and city ({{wd.drop_350|int}} were not and were dropped). In the United States, where Wikidata often gives feet as metres, I kept a height under 350 m only if the CORGIS skyscrapers dataset, taken from the CTBUH's Skyscraper Center, had the same building within 8% ({{wd.n_corgis_ok|int}} did; {{wd.n_corgis_bad|int}} disagreed and {{wd.n_unchecked_us|int}} could not be checked, so they are not counted). Outside the United States I kept heights as given, apart from {{wd.drop_review|int}} that were plainly feet. Cities are the largest Natural Earth place within 40 km.</p>
+<p><b>Churches.</b> The {{wd.religious|int}} churches, mosques and temples of 100 m or more in the extract are in the data file but not on the map or in the counts, because Wikidata dates them by their founding, not by when they reached their height.</p>
+<p><b>What this cannot say.</b> Wikidata is not a census of skyscrapers. It is fullest for famous buildings and thinnest for China's, so the counts in sections 04 and 05 are counts of records, and some heights outside the United States will still be wrong. Leaving out unchecked American records lowers North America's share: counting all of them, Asia's share of new 200 m buildings in the 2010s would be {{wd.asia_share_us.2010|pc}} rather than {{wd.asia_share.2010|pc}}. Years are opening dates where Wikidata has them ({{wd.ysrc_open|int}} buildings), otherwise inception ({{wd.ysrc_inc|int}}), which is sometimes the start of construction.</p>
+<details><summary>Sources and licences</summary>
+<ul>
+<li>English Wikipedia, 'History of the world's tallest buildings' (revision {{meta.rev_history|raw}}) and 'List of tallest buildings' (revision {{meta.rev_list|raw}}), CC BY-SA 4.0. The record-holder, list and under-construction tables in data/ are derived from them and shared under CC BY-SA 4.0.</li>
+<li>Wikidata, structures with a height of 100 or more, via QLever, CC0.</li>
+<li>CORGIS skyscrapers dataset (Bart and others, Virginia Tech; github.com/corgis-edu/corgis, GPL-3.0), derived from the CTBUH Skyscraper Center: used only to check units of United States heights, not redistributed.</li>
+<li>Natural Earth countries and populated places (public domain). Base map tiles © Esri.</li>
+</ul></details>
+
+<div class="cta"><a class="p" href="https://doi.org/10.5281/zenodo.23857608">Read the paper</a><a href="https://github.com/Tristan-Hotham/tallest-buildings">Data and code</a><a href="https://blog.tristanhotham.com/2026/10/31/tallest-buildings/">Blog post</a></div>
+
+<footer>
+<p>Dr Tristan Hotham, Independent researcher. ORCID <a href="https://orcid.org/0000-0003-4931-9349">0000-0003-4931-9349</a>.</p>
+<p>Cite as: Hotham, T. (2026) The world's tallest building: who held the record, for how long, and where today's tall buildings are. Zenodo. <a href="https://doi.org/10.5281/zenodo.23857608">https://doi.org/10.5281/zenodo.23857608</a></p>
+<p>Data: English Wikipedia (CC BY-SA 4.0); Wikidata (CC0); Natural Earth. Licence: text, figures and derived data CC BY-SA 4.0, code MIT.</p>
+<p>I wrote the text, with drafting and editing assistance from Claude (Anthropic), which also helped prepare the analysis code. I reviewed and checked all text and results.</p>
+</footer>
+</div>
+<div class="tip" id="tip"></div>
+<button class="btn theme" id="theme" aria-label="Toggle dark mode">◐</button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const R = /*RESULTS*/;
+const SITE = /*SITE*/;
+const SIL = /*SIL*/;
+const WORLD = /*WORLD*/;
+const CITIES = /*CITIES*/;
+const fmt = n => n == null || n === "" ? "n/a" : Math.round(n).toLocaleString("en-GB");
+const fm1 = n => (Math.round(n * 10) / 10).toLocaleString("en-GB");
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const tip = document.getElementById("tip");
+function showTip(h, x, y) { tip.innerHTML = h; tip.style.display = "block"; const w = tip.offsetWidth; x = Math.max(w / 2 + 8, Math.min(innerWidth - w / 2 - 8, x)); tip.style.left = x + scrollX + "px"; tip.style.top = y + scrollY + "px"; }
+function hideTip() { tip.style.display = "none"; }
+document.addEventListener("click", hideTip);
+const NS = "http://www.w3.org/2000/svg";
+const el = (t, a, p) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; };
+const lbl = (svg, x, y, s, cls = "lab", anchor = "start") => { const t = el("text", { x, y, class: cls, "text-anchor": anchor }, svg); t.textContent = s; return t; };
+const redraws = [];
+function resp(box, render) { let last = 0; const go = force => { const w = Math.max(280, Math.round(box.clientWidth)); if (!force && Math.abs(w - last) < 4) return; last = w; box.innerHTML = ""; render(w, w < 560); }; new ResizeObserver(() => go()).observe(box); go(); redraws.push(() => go(true)); return () => go(true); }
+const isDark = () => { const r = document.documentElement; return r.dataset.theme ? r.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches; };
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const small = () => innerWidth < 900;
+const REGIONS = SITE.regions, BANDS = SITE.bands, HB = SITE.hb, HS = SITE.hs, STEPS = SITE.steps;
+const RIDX = {}; REGIONS.forEach((r, i) => RIDX[r[0]] = i);
+const ASIA = new Set(["East Asia", "Southeast Asia", "South Asia", "Middle East"]);
+const CCOL = SIL.citycol;
+const yrTxt = y => y == null ? "" : (y < 0 ? (-y) + " BC" : String(y));
+const wd = q => q ? ` <a href="https://www.wikidata.org/wiki/${esc(q)}" target="_blank" rel="noopener">Wikidata</a>` : "";
+const SHORT = SIL.short;
+const nm = h => SHORT[h.name] || h.name;
+
+/* hero mark: Lincoln, the Empire State Building and the Burj Khalifa to scale */
+function drawSil(g, poly, x0, y0, k, attrs) { const d = poly.map(p => "M" + p.map(([x, y]) => `${(x0 + x * k).toFixed(1)} ${(y0 - y * k).toFixed(1)}`).join("L") + "Z").join(""); return el("path", Object.assign({ d }, attrs), g); }
+(function () {
+  const g = document.getElementById("heroMark"), k = 120 / 860;
+  el("path", { d: "M2 124 L118 124", stroke: "currentColor", "stroke-width": 2 }, g);
+  [["Lincoln Cathedral", 18], ["Empire State Building", 50], ["Burj Khalifa", 92]].forEach(([n, x]) => drawSil(g, SIL.poly[n], x, 124, k, { fill: CCOL[SIL.city[n]] }));
+})();
+
+/* ---------- map machinery ---------- */
+const ESRI = "https://server.arcgisonline.com/ArcGIS/rest/services/";
+const ESRI_ATT = 'Tiles &copy; Esri, HERE, Garmin, USGS, NGA, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, and the GIS user community';
+const LYDEF = { base: "plain", hills: false, hillK: 40, labels: true, labelK: 70, names: true, nameLvl: 1, cnames: false, borders: true, dots: true, unchecked: false, route: true, uc: true, size: 1 };
+const LY = { ...LYDEF };
+try { Object.assign(LY, JSON.parse(localStorage.getItem("tall_layers") || "{}")); } catch (e) {}
+const saveLY = () => { try { localStorage.setItem("tall_layers", JSON.stringify(LY)); } catch (e) {} };
+const HOME = () => small() ? [[30, 20], 1.5] : [[32, 25], 2];
+const map = L.map("map", { minZoom: 1, maxZoom: 17, maxBounds: [[-80, -220], [85, 220]], zoomSnap: .5 }).setView(...HOME());
+["hills:250", "fill:400", "labels:450", "route:560", "pts:600", "rec:640", "names:620"].forEach(s => { const [n, z] = s.split(":"); map.createPane(n); map.getPane(n).style.zIndex = z; });
+["hills", "labels", "names", "fill", "route"].forEach(n => map.getPane(n).style.pointerEvents = "none");
+const canvas = L.canvas({ pane: "pts", padding: .3, tolerance: 3 });
+let base = null, hills = null, labels = null; const names = L.layerGroup(), cnames = L.layerGroup();
+function setTiles() {
+  [base, labels, hills].forEach(l => { if (l) map.removeLayer(l); });
+  const t = isDark() ? "Dark" : "Light";
+  const url = LY.base === "relief" ? ESRI + "World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}" : LY.base === "satellite" ? ESRI + "World_Imagery/MapServer/tile/{z}/{y}/{x}" : LY.base === "street" ? ESRI + "World_Street_Map/MapServer/tile/{z}/{y}/{x}" : `${ESRI}Canvas/World_${t}_Gray_Base/MapServer/tile/{z}/{y}/{x}`;
+  base = L.tileLayer(url, { maxZoom: 19, maxNativeZoom: LY.base === "relief" ? 13 : LY.base === "plain" ? 16 : 18, attribution: ESRI_ATT }).addTo(map);
+  hills = L.tileLayer(ESRI + "Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}", { maxZoom: 19, maxNativeZoom: 16, pane: "hills" });
+  labels = L.tileLayer(`${ESRI}Canvas/World_${t}_Gray_Reference/MapServer/tile/{z}/{y}/{x}`, { maxZoom: 19, maxNativeZoom: 16, pane: "labels" });
+  applyLayers();
+}
+function applyLayers() {
+  if (!base) return;
+  if (LY.hills) { hills.addTo(map); hills.setOpacity(Math.min(1, .1 + LY.hillK / 120)); } else map.removeLayer(hills);
+  if (LY.labels && LY.base !== "street") { labels.addTo(map); labels.setOpacity(LY.labelK / 100); } else map.removeLayer(labels);
+  if (LY.names) names.addTo(map); else map.removeLayer(names);
+  if (LY.cnames) cnames.addTo(map); else map.removeLayer(cnames);
+  cLayer.setStyle(cStyle); placeNames(); drawDots(); drawRecords();
+}
+function placeNames() {
+  names.clearLayers(); cnames.clearLayers();
+  const z = map.getZoom(), bb = map.getBounds().pad(.05); const bxs = [];
+  if (LY.names) {
+    const minPop = [[2, 8e6], [3, 3e6], [4, 1e6], [5, 4e5], [6, 1.5e5], [7, 6e4], [99, 2e4]].find(([zz]) => z < zz + (LY.nameLvl === 2 ? 1.5 : LY.nameLvl === 0 ? -1 : 0))[1] * (LY.nameLvl === 0 ? 2 : 1);
+    let n = 0;
+    for (const c of CITIES) {
+      if (c.pop < minPop || !bb.contains([c.lat, c.lon])) continue;
+      const pt = map.latLngToContainerPoint([c.lat, c.lon]), big = c.pop >= 5e6;
+      const bx = [pt.x - 4, pt.y - 8, pt.x + 10 + c.name.length * (big ? 6.9 : 6.3), pt.y + 7];
+      if (bxs.some(o => bx[0] < o[2] && bx[2] > o[0] && bx[1] < o[3] && bx[3] > o[1])) continue;
+      bxs.push(bx); L.marker([c.lat, c.lon], { pane: "names", interactive: false, keyboard: false, icon: L.divIcon({ className: "cityL" + (big ? "" : " s"), html: `<i></i>${esc(c.name)}`, iconSize: null, iconAnchor: [3, 6] }) }).addTo(names);
+      if (++n >= 120) break;
+    }
+  }
+  if (LY.cnames && z >= 3 && z < 7) {
+    WORLD.features.forEach(f => { const g = SITE.cpos[f.properties.iso]; if (!g || !bb.contains([g[1], g[0]])) return; const nm = SITE.cname[f.properties.iso] || "";
+      if (z < 4 && (g[2] || 0) < 2e7) return; const pt = map.latLngToContainerPoint([g[1], g[0]]), w = nm.length * 7.2;
+      const bx = [pt.x - w / 2, pt.y - 7, pt.x + w / 2, pt.y + 7]; if (bxs.some(o => bx[0] < o[2] && bx[2] > o[0] && bx[1] < o[3] && bx[3] > o[1])) return; bxs.push(bx);
+      L.marker([g[1], g[0]], { pane: "names", interactive: false, keyboard: false, icon: L.divIcon({ className: "cntL", html: esc(nm), iconSize: [w, 14], iconAnchor: [w / 2, 7] }) }).addTo(cnames); });
+  }
+}
+(function layerControl() {
+  const Ctl = L.Control.extend({ options: { position: "topright" }, onAdd() {
+    const d = L.DomUtil.create("div"); L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
+    d.innerHTML = `<button class="lyrBtn" aria-expanded="false">Map layers</button>
+<div class="lyrPanel" hidden>
+ <div class="row"><label style="font-weight:600">Base map</label><div class="sub"><select data-k="base" aria-label="Base map"><option value="plain">Plain grey</option><option value="street">Streets</option><option value="relief">Shaded relief</option><option value="satellite">Satellite</option></select></div></div>
+ <div class="row"><label><input type="checkbox" data-k="hills"> Hill shading</label><div class="sub"><span>strength</span><input type="range" data-k="hillK" min="10" max="100" step="5" aria-label="Hill shading strength"></div></div>
+ <div class="row"><label><input type="checkbox" data-k="labels"> Place labels</label><div class="sub"><span>strength</span><input type="range" data-k="labelK" min="20" max="100" step="5" aria-label="Map label strength"></div></div>
+ <div class="row"><label><input type="checkbox" data-k="names"> Bold city names</label><div class="sub"><span>how many</span><select data-k="nameLvl" aria-label="How many city names"><option value="0">Biggest only</option><option value="1">Some</option><option value="2">Lots</option></select></div></div>
+ <div class="row"><label><input type="checkbox" data-k="cnames"> Country names</label></div>
+ <div class="row"><label><input type="checkbox" data-k="borders"> Borders</label></div>
+ <div class="hd">Study layers</div>
+ <div class="row"><label><input type="checkbox" data-k="route"> Record-holders and their route</label></div>
+ <div class="row"><label><input type="checkbox" data-k="dots"> Tall buildings (dots)</label><div class="sub"><span>size</span><input type="range" data-k="size" min=".5" max="2.5" step=".25" aria-label="Dot size"></div></div>
+ <div class="row"><label><input type="checkbox" data-k="uc"> Under construction, 350 m and over</label></div>
+ <div class="row"><label><input type="checkbox" data-k="unchecked"> Unchecked United States heights</label><div class="sub">may be feet; not counted</div></div>
+ <button class="reset">Reset layers</button>
+</div>`;
+    return d; } });
+  map.addControl(new Ctl());
+  const box = map.getContainer(), btn = box.querySelector(".lyrBtn"), pan = box.querySelector(".lyrPanel");
+  btn.onclick = () => { const o = pan.hidden; pan.hidden = !o; btn.setAttribute("aria-expanded", o); };
+  const sync = () => pan.querySelectorAll("[data-k]").forEach(i => { const k = i.dataset.k; if (i.type === "checkbox") i.checked = LY[k]; else i.value = LY[k]; });
+  pan.querySelectorAll("[data-k]").forEach(i => i.addEventListener(i.type === "range" ? "input" : "change", () => {
+    const k = i.dataset.k; LY[k] = i.type === "checkbox" ? i.checked : (k === "base" ? i.value : +i.value);
+    if (k === "hillK") LY.hills = true; if (k === "labelK") LY.labels = true; if (k === "nameLvl") LY.names = true; if (k === "size") LY.dots = true;
+    sync(); saveLY(); if (k === "base") setTiles(); else applyLayers(); legend();
+  }));
+  pan.querySelector(".reset").onclick = () => { Object.assign(LY, LYDEF); saveLY(); sync(); setTiles(); legend(); };
+  sync();
+})();
+const Badge = L.Control.extend({ options: { position: "topleft" }, onAdd() { const d = L.DomUtil.create("div", "yearBadge"); d.id = "badge"; return d; } });
+map.addControl(new Badge());
+L.control.scale({ imperial: false, position: "bottomright" }).addTo(map);
+function cStyle() { return { color: css("--border") || "#999", weight: LY.borders ? .6 : 0, fillColor: css("--land"), fillOpacity: 0, interactive: false }; }
+const cLayer = L.geoJSON(WORLD, { pane: "fill", style: cStyle, interactive: false }).addTo(map);
+
+/* ---------- state ---------- */
+const S = { step: STEPS.length - 1, show: "both", min: 100, col: "dec", sel: null, playing: false, cityFocus: null };
+const curYear = () => STEPS[S.step].y;
+const bandOf = y => { if (y == null) return -1; for (let i = 0; i < BANDS.length; i++) if (y >= BANDS[i][1] && y <= BANDS[i][2]) return i; return -1; };
+const CHK = SITE.checks;
+
+/* ---------- tall buildings ---------- */
+let P = null; const dotL = L.layerGroup().addTo(map);
+const rad = h => LY.size * (1.6 + Math.sqrt(Math.max(0, h - 90)) * .32);
+const colP = p => S.col === "reg" ? (p[12] != null ? REGIONS[p[12]][1] : "#999") : (bandOf(p[3]) >= 0 ? BANDS[bandOf(p[3])][3] : "#999");
+function keepP(p) {
+  if (p[5] === 5) return false;
+  if (p[5] === 4 && !LY.unchecked) return false;
+  if (p[2] < S.min) return false;
+  const y = curYear();
+  if (p[3] == null || p[3] > y) return false;
+  return true;
+}
+const ysrcTxt = { o: "official opening", i: "inception", l: "List page" };
+function ptPopup(p) {
+  return `<b>${esc(p[7])}</b><br>${fm1(p[2])} m · ${p[3] ?? "year not given"}${p[3] ? " (" + ysrcTxt[p[11]] + ")" : ""}<br>${esc(p[8] || "")}${p[9] ? ", " + esc(p[9]) : ""}<br>` +
+    (p[6] ? `No. ${p[6]} on Wikipedia's list of buildings of 350 m or more<br>` : "") + `<small>${p[4] ? "Church, mosque or temple. " : ""}Height: ${esc(CHK[p[5]])}.</small>${wd(p[10])}`;
+}
+function drawDots() {
+  dotL.clearLayers(); if (!P || !LY.dots) { side(); return; }
+  const dark = isDark();
+  for (const p of P) {
+    if (!keepP(p)) continue;
+    const unc = p[5] === 4;
+    const m = L.circleMarker([p[0], p[1]], { renderer: canvas, radius: rad(p[2]), weight: unc ? 1.2 : .7, color: unc ? "#8a8a8a" : (dark ? "rgba(0,0,0,.6)" : "rgba(255,255,255,.95)"), fillColor: unc ? "transparent" : colP(p), fillOpacity: unc ? 0 : .92 });
+    m.bindPopup(() => ptPopup(p), { maxWidth: 280 }); m.on("mouseover", e => { const r = map.getContainer().getBoundingClientRect(); showTip(`<b>${esc(p[7])}</b><br>${fm1(p[2])} m, ${p[3] ?? ""}`, r.left + e.containerPoint.x, r.top + e.containerPoint.y); }); m.on("mouseout", hideTip);
+    m.addTo(dotL);
+  }
+  side();
+}
+
+/* ---------- record-holders, route and buildings under construction ---------- */
+const recL = L.layerGroup().addTo(map), ucL = L.layerGroup().addTo(map);
+const HBU = []; HB.forEach((h, i) => { if (!HBU.some(u => u.name === h.name)) HBU.push(Object.assign({ i }, h)); });
+function recPopup(h) {
+  const def = h.track === "s" ? (["pyramid", "obelisk", "tower", "mast"].includes(h.kind) ? "tallest structure (not a building)" : "tallest structure, and building") : "tallest building";
+  const spans = (h.track === "b" ? HB : HS).filter(x => x.name === h.name).map(x => `${x.from_txt} to ${x.to_txt}`).join(" and ");
+  return `<b>${esc(h.name)}</b><br>${esc(h.city || "")}${h.country ? ", " + esc(h.country) : ""}<br>${h.h ? fm1(h.h) + " m · " : ""}${def}, ${esc(spans)}` + (h.status ? `<br><small>${esc(h.status)} today</small>` : "") + wd(h.qid);
+}
+function drawRecords() {
+  recL.clearLayers(); ucL.clearLayers();
+  const y = curYear(), st = STEPS[S.step], dark = isDark();
+  if (LY.uc) SITE.uc.forEach(u => { if (u.lat == null) return; const m = L.circleMarker([u.lat, u.lon], { pane: "rec", radius: 4 + Math.sqrt(u.h - 300) * .35, color: dark ? "#ddd" : "#555", weight: 1.4, dashArray: "3 2", fill: false });
+    m.bindPopup(`<b>${esc(u.name)}</b><br>${esc(u.city)}, ${esc(u.country)}<br>Under construction: planned ${fmt(u.h)} m${u.floors ? ", " + esc(u.floors) + " floors" : ""}${u.planned ? ", completion planned " + esc(u.planned) : ""}<br><small>List of tallest buildings, under construction${u.loc === "city" ? "; shown at the city centre" : ""}</small>`); m.addTo(ucL); });
+  if (!LY.route) return;
+  if (S.show !== "s") {
+    const seen = HBU.filter(h => (h.from ?? 1300) <= y && y >= 1300);
+    if (seen.length > 1) L.polyline(seen.map(h => [h.lat, h.lon]), { pane: "route", color: css("--hot"), weight: 2, opacity: .55, dashArray: "6 5" }).addTo(recL);
+    HBU.forEach(h => { if ((h.from ?? 1300) > y || y < 1300) return; const cur = st.b != null && HB[st.b].name === h.name;
+      const m = L.circleMarker([h.lat, h.lon], { pane: "rec", radius: cur ? 11 : 6.5, color: dark ? "#111" : "#fff", weight: cur ? 3 : 1.6, fillColor: CCOL[h.city] || "#777", fillOpacity: 1 }); m.bindPopup(recPopup(h)); m.addTo(recL);
+      if (cur) L.marker([h.lat, h.lon], { pane: "names", interactive: false, icon: L.divIcon({ className: "recL", html: `${esc(nm(h))}<br><small>${fm1(h.h)} m</small>`, iconSize: null, iconAnchor: [-13, 10] }) }).addTo(recL); });
+  }
+  if (S.show !== "b") {
+    HS.forEach((h, i) => { if (h.lat == null || h.from > y) return; if (S.show === "both" && HB.some(b => b.name === h.name || (h.name.startsWith("Lincoln") && b.name === "Lincoln Cathedral"))) return;
+      const cur = st.s === i;
+      const m = L.marker([h.lat, h.lon], { pane: "rec", icon: L.divIcon({ className: "", html: `<svg width="${cur ? 26 : 16}" height="${cur ? 26 : 16}" viewBox="0 0 20 20"><path d="M10 1 L19 18 L1 18 Z" fill="${CCOL[h.city] || "#777"}" stroke="${dark ? "#111" : "#fff"}" stroke-width="2"/></svg>`, iconSize: [cur ? 26 : 16, cur ? 26 : 16], iconAnchor: [cur ? 13 : 8, cur ? 16 : 10] }) });
+      m.bindPopup(recPopup(h)); m.addTo(recL);
+      if (cur) L.marker([h.lat, h.lon], { pane: "names", interactive: false, icon: L.divIcon({ className: "recL", html: `${esc(nm(h))}<br><small>${h.h ? fm1(h.h) + " m, structure" : ""}</small>`, iconSize: null, iconAnchor: [-15, 12] }) }).addTo(recL); });
+  }
+}
+
+/* ---------- the slider ---------- */
+const stepIn = document.getElementById("step"); stepIn.max = STEPS.length - 1; stepIn.value = S.step;
+function titleBoxes() {
+  const st = STEPS[S.step]; const b = st.b != null ? HB[st.b] : null, s = st.s != null ? HS[st.s] : null;
+  document.getElementById("yv").textContent = st.lab;
+  const tb = document.getElementById("tbB"), ts = document.getElementById("tbS");
+  tb.style.setProperty("--c", b ? CCOL[b.city] : "var(--rule)"); ts.style.setProperty("--c", s && s.city ? CCOL[s.city] : "var(--rule)");
+  tb.innerHTML = `<h5>Tallest building</h5>` + (b ? `<b>${esc(b.name)}</b>${esc(b.city)}, ${fm1(b.h)} m · ${esc(b.from_txt)} to ${esc(b.to_txt)}` : `<b>Not known</b>Before the 14th century the tallest building "cannot be conclusively determined"`);
+  ts.innerHTML = `<h5>Tallest structure of any kind</h5>` + (s ? `<b>${esc(s.name === "Lincoln Cathedral and the churches" ? "Churches and cathedrals" : s.name)}</b>${s.city ? esc(s.city) + ", " : ""}${s.h ? fm1(s.h) + " m · " : ""}${esc(s.from_txt)} to ${esc(s.to_txt)}${s.kind === "mast" ? " (radio and television masts; the CN Tower was the tallest free-standing structure, 1975 to 2007)" : ""}` : "");
+  document.getElementById("badge").innerHTML = S.playing ? `${esc(st.lab)}` : "";
+}
+function setStep(i, fly) {
+  S.step = Math.max(0, Math.min(STEPS.length - 1, i)); stepIn.value = S.step; titleBoxes(); drawDots(); drawRecords();
+  if (fly) { const st = STEPS[S.step]; const h = st.b != null && S.show !== "s" ? HB[st.b] : (st.s != null ? HS[st.s] : null); if (h && h.lat != null) map.flyTo([h.lat, h.lon], Math.max(map.getZoom(), small() ? 3 : 4), { duration: .9 }); }
+}
+stepIn.addEventListener("input", () => { stop(); setStep(+stepIn.value, false); });
+let timer = null;
+function stop() { if (timer) clearInterval(timer); timer = null; if (S.playing) { S.playing = false; document.getElementById("play").textContent = "▶ Play"; titleBoxes(); } }
+document.getElementById("play").onclick = () => {
+  if (S.playing) return stop();
+  S.playing = true; document.getElementById("play").textContent = "❚❚ Pause";
+  let i = S.step >= STEPS.length - 1 ? 0 : S.step; setStep(i, true);
+  timer = setInterval(() => { i++; if (i >= STEPS.length) { stop(); map.flyTo(...HOME(), { duration: 1 }); return; } setStep(i, true); }, 2000);
+};
+const press = (row, b) => document.querySelectorAll(row + " .btn").forEach(x => x.setAttribute("aria-pressed", x === b));
+document.querySelectorAll("#showRow .btn").forEach(b => b.onclick = () => { S.show = b.dataset.v; press("#showRow", b); drawRecords(); legend(); });
+document.querySelectorAll("#minRow .btn").forEach(b => b.onclick = () => { S.min = +b.dataset.m; press("#minRow", b); drawDots(); });
+document.querySelectorAll("#colRow .btn").forEach(b => b.onclick = () => { S.col = b.dataset.c; press("#colRow", b); drawDots(); legend(); });
+const FOCUS = [["World", [[32, 25], 2], [[30, 20], 1.5]], ["Manhattan", [[40.735, -73.99], 12.5]], ["Dubai", [[25.13, 55.2], 11]], ["Pearl River Delta", [[22.6, 114.0], 9]],
+  ["Shanghai", [[31.23, 121.48], 11.5]], ["Medieval Europe", [[51, 5], 5]], ["Chicago", [[41.88, -87.63], 12.5]], ["Kuala Lumpur", [[3.15, 101.7], 12.5]], ["Tokyo", [[35.68, 139.74], 11.5]], ["Moscow", [[55.75, 37.55], 12]]];
+(function () { const row = document.getElementById("focusRow");
+  FOCUS.forEach(([n, a, ph]) => { const b = document.createElement("button"); b.className = "btn"; b.textContent = n; b.onclick = () => { const v = small() && ph ? ph : a; map.flyTo(v[0], small() ? v[1] - .5 : v[1], { duration: .8 }); }; row.appendChild(b); }); })();
+
+/* ---------- legend and side panel ---------- */
+function legend() {
+  const e = document.getElementById("legend"); let h = "";
+  if (LY.dots) h += (S.col === "reg" ? REGIONS.map(r => [r[0], r[1]]) : BANDS.map(b => [b[0], b[3]])).map(x => `<span><i style="background:${x[1]}"></i>${esc(x[0])}</span>`).join("") + `<span>bigger dot: taller</span>`;
+  if (LY.route) h += `<span><i style="background:${CCOL["Lincoln"]};border:2px solid #fff;box-shadow:0 0 0 1px #999"></i>record-holder (building), coloured by city</span><span><svg width="14" height="13" viewBox="0 0 20 20" style="margin-right:6px"><path d="M10 1 L19 18 L1 18 Z" fill="${CCOL["Paris"]}"/></svg>structure, not a building</span>`;
+  if (LY.uc) h += `<span><i style="background:transparent;border:1.5px dashed #777"></i>under construction</span>`;
+  if (LY.unchecked) h += `<span><i style="background:transparent;border:1.5px solid #8a8a8a"></i>height not checked</span>`;
+  e.innerHTML = h;
+}
+function side() {
+  const box = document.getElementById("side"); if (!P) { box.innerHTML = "Loading the buildings..."; return; }
+  const y = curYear(); const vis = P.filter(keepP); const by = {};
+  vis.forEach(p => { const k = p[8] || "?"; by[k] = (by[k] || 0) + 1; });
+  const top = Object.entries(by).sort((a, b) => b[1] - a[1]).slice(0, 10);
+  const tall = vis.slice().sort((a, b) => b[2] - a[2]).slice(0, 8);
+  let h = `<h4>Standing in ${esc(STEPS[S.step].lab)}</h4><div class="big">${fmt(vis.length)}</div><p class="sub">buildings of ${S.min} m or more in this map's data</p>`;
+  if (top.length) h += `<h4>Most of them</h4><table>${top.map(([c, n]) => `<tr><td><span class="go" data-c="${esc(c)}">${esc(c)}</span></td><td class="num">${fmt(n)}</td></tr>`).join("")}</table>`;
+  if (tall.length) h += `<h4>Tallest of them</h4><ol>${tall.map(p => `<li><span class="go" data-p="${P.indexOf(p)}">${esc(p[7])}</span> <small>${fm1(p[2])} m, ${esc(p[8])}</small></li>`).join("")}</ol>`;
+  if (!vis.length) h += `<p class="sub">No dots yet: the oldest building of 100 m or more in the cleaned data was finished in ${R.wd.first_year}. Move the slider on.</p>`;
+  box.innerHTML = h;
+  box.querySelectorAll("[data-p]").forEach(a => a.onclick = () => { const p = P[+a.dataset.p]; map.flyTo([p[0], p[1]], 15, { duration: .8 }); setTimeout(() => L.popup({ maxWidth: 280 }).setLatLng([p[0], p[1]]).setContent(ptPopup(p)).openOn(map), 900); });
+  box.querySelectorAll("[data-c]").forEach(a => a.onclick = () => flyCity(a.dataset.c));
+}
+function flyCity(c) { const ps = P.filter(p => p[8] === c && keepP(p)); if (!ps.length) return; const b = L.latLngBounds(ps.map(p => [p[0], p[1]])); map.flyToBounds(b.pad(.3), { maxZoom: 13, duration: .8 }); document.getElementById("atlas").scrollIntoView({ behavior: "smooth", block: "start" }); }
+
+/* ---------- search ---------- */
+(function search() {
+  const q = document.getElementById("q"), sug = document.getElementById("sug"); let items = [], k = -1;
+  const run = () => {
+    const s = q.value.trim().toLowerCase(); sug.innerHTML = ""; items = []; k = -1; if (s.length < 2 || !P) { sug.style.display = "none"; return; }
+    const cities = {}; P.forEach(p => { if (p[5] !== 5 && (p[5] !== 4 || LY.unchecked)) { cities[p[8]] = (cities[p[8]] || 0) + 1; } });
+    Object.entries(cities).filter(([c]) => c && c.toLowerCase().includes(s)).sort((a, b) => b[1] - a[1]).slice(0, 4).forEach(([c, n]) => items.push({ t: "c", c, lab: `${esc(c)} <span>· city, ${fmt(n)} buildings</span>` }));
+    HBU.concat(HS.filter(h => h.lat != null && !HBU.some(b => b.name === h.name))).filter(h => h.name.toLowerCase().includes(s)).slice(0, 4).forEach(h => items.push({ t: "r", h, lab: `${esc(h.name)} <span>· record-holder</span>` }));
+    P.map((p, i) => [p, i]).filter(([p]) => p[5] !== 5 && (p[5] !== 4 || LY.unchecked) && p[7].toLowerCase().includes(s)).sort((a, b) => b[0][2] - a[0][2]).slice(0, 8).forEach(([p, i]) => items.push({ t: "p", i, lab: `${esc(p[7])} <span>· ${fm1(p[2])} m, ${esc(p[8])}</span>` }));
+    sug.innerHTML = items.map((it, j) => `<li role="option" data-j="${j}">${it.lab}</li>`).join(""); sug.style.display = items.length ? "block" : "none";
+    sug.querySelectorAll("li").forEach(li => li.onmousedown = e => { e.preventDefault(); go(+li.dataset.j); });
+  };
+  const go = j => { const it = items[j]; if (!it) return; sug.style.display = "none"; q.blur();
+    if (it.t === "c") { setStep(STEPS.length - 1); flyCity(it.c); }
+    else if (it.t === "r") { map.flyTo([it.h.lat, it.h.lon], 14, { duration: .8 }); setTimeout(() => L.popup().setLatLng([it.h.lat, it.h.lon]).setContent(recPopup(it.h)).openOn(map), 900); }
+    else { const p = P[it.i]; if (p[3] && p[3] > curYear()) setStep(STEPS.length - 1); if (p[2] < S.min) { S.min = 100; press("#minRow", document.querySelector('#minRow [data-m="100"]')); drawDots(); }
+      map.flyTo([p[0], p[1]], 15, { duration: .8 }); setTimeout(() => L.popup({ maxWidth: 280 }).setLatLng([p[0], p[1]]).setContent(ptPopup(p)).openOn(map), 900); } };
+  q.addEventListener("input", run);
+  q.addEventListener("keydown", e => { const lis = sug.querySelectorAll("li"); if (e.key === "ArrowDown") { k = Math.min(lis.length - 1, k + 1); } else if (e.key === "ArrowUp") { k = Math.max(0, k - 1); } else if (e.key === "Enter") { go(k >= 0 ? k : 0); return; } else return; lis.forEach((l, j) => l.setAttribute("aria-selected", j === k)); e.preventDefault(); });
+  q.addEventListener("blur", () => setTimeout(() => sug.style.display = "none", 150));
+})();
+
+fetch("data/points.json").then(r => r.json()).then(j => { P = j; drawDots(); legend(); });
+setTiles(); titleBoxes(); legend();
+map.on("zoomend moveend", placeNames);
+
+/* ---------- 02: the skyline ---------- */
+resp(document.getElementById("skyline"), (W0) => {
+  const box = document.getElementById("skyline"), W = Math.max(W0, 860), H = Math.round(W * .56), ml = 46, mb = 54, mt = 8;
+  const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "The record-holders drawn to scale" }, box);
+  const items = SIL.items, total = SIL.total, k = Math.min((W - ml - 8) / total, (H - mb - mt) / 1150);
+  for (let m = 0; m <= 1000; m += 200) { const y = H - mb - m * k; el("line", { x1: ml, x2: W - 6, y1: y, y2: y, stroke: css("--rule"), "stroke-width": m ? 1 : 1.5 }, svg); lbl(svg, ml - 6, y + 4, m ? m + " m" : "0", "lab m s", "end"); }
+  const defs = el("defs", {}, svg); const pat = el("pattern", { id: "hatch", width: 6, height: 6, patternUnits: "userSpaceOnUse", patternTransform: "rotate(45)" }, defs); el("line", { x1: 0, y1: 0, x2: 0, y2: 6, stroke: css("--muted"), "stroke-width": 2 }, pat);
+  items.forEach((it, j) => {
+    const x0 = ml + it.x * k, g = el("g", { style: "cursor:pointer" }, svg), col = it.mode === "p" ? "none" : CCOL[it.city];
+    SIL.poly[it.name].forEach(poly => { const d = "M" + poly.map(([x, y]) => `${(x0 + x * k).toFixed(1)} ${(H - mb - y * k).toFixed(1)}`).join("L") + "Z";
+      el("path", { d, fill: it.mode === "b" ? col : it.mode === "s" ? "url(#hatch)" : "none", stroke: it.mode === "b" ? col : it.mode === "s" ? CCOL[it.city] : css("--muted"), "stroke-width": it.mode === "b" ? .6 : 1.4, "stroke-dasharray": it.mode === "p" ? "4 3" : "none" }, g); });
+    if (it.mode === "p") { const yy = H - mb - it.h * k + 2, xx = x0 + 22; const t = el("text", { x: xx, y: yy, class: "lab s", transform: `rotate(90 ${xx} ${yy})` }, svg); t.textContent = `${it.name}, planned ${fm1(it.h)} m`; }
+    else { const t = el("text", { x: x0, y: H - mb - it.h * k - 6, class: "lab s", transform: `rotate(-90 ${x0} ${H - mb - it.h * k - 6})` }, svg); t.textContent = `${SHORT[it.name] || it.name} ${fm1(it.h)} m`; }
+    const yt = el("text", { x: x0, y: H - mb + 14 + (j % 2) * 13, class: "lab m s", "text-anchor": "middle" }, svg); yt.textContent = it.mode === "p" ? "2028?" : it.from_txt === "c. 2560 BC" ? "2560 BC" : it.from_txt === "13th century" ? "1200s" : it.from_txt;
+    const tipH = `<b>${esc(it.name)}</b><br>${esc(it.city)}, ${fm1(it.h)} m<br>` + (it.mode === "p" ? "Under construction; completion planned for " + R.uc.jeddah_planned : (it.mode === "s" ? "Tallest structure (not a building), " : "Tallest building, ") + it.spans);
+    g.addEventListener("mousemove", e => showTip(tipH, e.clientX, e.clientY)); g.addEventListener("mouseleave", hideTip);
+    g.addEventListener("click", e => { e.stopPropagation(); showTip(tipH, e.clientX, e.clientY); });
+  });
+});
+document.getElementById("skyLegend").innerHTML = `<span><i style="background:${CCOL["Lincoln"]};border-radius:2px"></i>building (Europe)</span><span><i style="background:${CCOL["New York City"]};border-radius:2px"></i>building (United States)</span><span><i style="background:${CCOL["Dubai"]};border-radius:2px"></i>building (Asia)</span><span><i style="background:repeating-linear-gradient(45deg,#888 0 2px,transparent 2px 5px);border-radius:2px"></i>structure, not a building</span><span><i style="background:transparent;border:1.5px dashed #888;border-radius:2px"></i>under construction</span>`;
+
+/* ---------- 02: the ribbon and years by city ---------- */
+resp(document.getElementById("ribbon"), (W, sm) => {
+  const box = document.getElementById("ribbon"), H = sm ? 150 : 132, ml = sm ? 8 : 104, mr = 10, y0 = 1300, y1 = 2026;
+  const svg = el("svg", { viewBox: `0 0 ${W} ${H}` }, box); const x = y => ml + (y - y0) / (y1 - y0) * (W - ml - mr);
+  const rows = [["Building", HB, sm ? 22 : 16], ["Structure", HS.slice(1), sm ? 78 : 64]];
+  rows.forEach(([lab, list, ty]) => {
+    lbl(svg, sm ? ml : ml - 8, sm ? ty - 4 : ty + 18, lab, "lab b", sm ? "start" : "end");
+    list.forEach(h => { const a = Math.max(y0, h.from ?? 1300), b = h.to ?? y1; if (b <= a && h.from !== h.to) return; const w = Math.max(1.2, x(b) - x(a));
+      const r = el("rect", { x: x(a), y: ty + (sm ? 2 : 4), width: w, height: 24, fill: h.kind === "mast" ? css("--rule") : (CCOL[h.city] || "#999"), stroke: css("--bg"), "stroke-width": .6 }, svg);
+      const tx = h.kind === "mast" ? "masts" : (h.city === "New York City" ? "New York" : h.name.startsWith("Lincoln Cathedral and") ? "churches" : h.city);
+      if (w > tx.length * 6.8 + 8) { const t = lbl(svg, x(a) + 4, ty + (sm ? 18 : 20), tx, "lab s", "start"); t.style.fill = h.kind === "mast" ? css("--fg") : "#fff"; }
+      const th = `<b>${esc(h.name)}</b><br>${esc(h.city || "")}${h.h ? ", " + fm1(h.h) + " m" : ""}<br>${esc(h.from_txt)} to ${esc(h.to_txt)}${h.years != null ? ` (${fmt(h.years)} years)` : ""}`;
+      r.addEventListener("mousemove", e => showTip(th, e.clientX, e.clientY)); r.addEventListener("mouseleave", hideTip); });
+  });
+  const ax = H - 22; [1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000].forEach(t => { el("line", { x1: x(t), x2: x(t), y1: ax - 6, y2: ax - 2, stroke: css("--muted") }, svg); if (!sm || t % 200 === 0) lbl(svg, x(t), ax + 12, t, "lab m s", "middle"); });
+  lbl(svg, W - mr, sm ? 12 : 10, `before 1311: the Great Pyramid of Giza, a structure, for about ${fmt(R.records.pyr_years)} years`, "lab m s", "end");
+});
+resp(document.getElementById("cityYears"), (W, sm) => {
+  const box = document.getElementById("cityYears"), list = R.records.cities.filter(c => c.years != null), rh = 22, ml = sm ? 104 : 130, H = list.length * rh + 10;
+  const svg = el("svg", { viewBox: `0 0 ${W} ${H}` }, box); const mx = list[0].years, x = v => ml + v / mx * (W - ml - 70);
+  list.forEach((c, i) => { const y = 4 + i * rh; lbl(svg, ml - 8, y + 14, c.city === "New York City" ? "New York" : c.city, "lab", "end");
+    const r = el("rect", { x: ml, y: y + 3, width: Math.max(2, x(c.years) - ml), height: rh - 7, fill: CCOL[c.city] || "#999" }, svg);
+    lbl(svg, x(c.years) + 6, y + 14, `${fmt(c.years)} yr`, "lab m", "start");
+    const th = `<b>${esc(c.city)}</b>: ${fmt(c.years)} years<br>${c.holders.map(esc).join("<br>")}`; r.addEventListener("mousemove", e => showTip(th, e.clientX, e.clientY)); r.addEventListener("mouseleave", hideTip); });
+});
+
+/* ---------- 04: the boom ---------- */
+let boomMode = "wd";
+const drawBoom = resp(document.getElementById("boom"), (W, sm) => {
+  const box = document.getElementById("boom"), H = sm ? 300 : 340, ml = 40, mb = 30, mt = 26, decs = ["1930", "1940", "1950", "1960", "1970", "1980", "1990", "2000", "2010", "2020"];
+  const G = boomMode === "wd" ? R.wd.grid : R.wd.grid350; const tot = d => REGIONS.reduce((s, r) => s + G[d][r[0]], 0);
+  const mx = Math.max(...decs.map(tot)), step = mx > 150 ? 50 : mx > 40 ? 10 : 5, top = Math.ceil(mx / step) * step;
+  const svg = el("svg", { viewBox: `0 0 ${W} ${H}` }, box); const bw = (W - ml - 6) / decs.length, y = v => H - mb - v / top * (H - mb - mt);
+  for (let v = 0; v <= top; v += step) { el("line", { x1: ml, x2: W - 4, y1: y(v), y2: y(v), stroke: css("--rule") }, svg); lbl(svg, ml - 6, y(v) + 4, v, "lab m s", "end"); }
+  decs.forEach((d, i) => { let acc = 0; const x0 = ml + i * bw + bw * .14;
+    REGIONS.forEach(([r, c]) => { const v = G[d][r]; if (!v) return; const rr = el("rect", { x: x0, y: y(acc + v), width: bw * .72, height: y(acc) - y(acc + v), fill: c }, svg); acc += v;
+      const th = `<b>${d}s</b>: ${esc(r)}, ${v} building${v === 1 ? "" : "s"}<br>${tot(d)} in all`; rr.addEventListener("mousemove", e => showTip(th, e.clientX, e.clientY)); rr.addEventListener("mouseleave", hideTip); });
+    lbl(svg, x0 + bw * .36, H - mb + 16, sm ? "'" + d.slice(2) : d + "s", "lab m s", "middle");
+    const t = tot(d); if (t >= 3) { const a = REGIONS.filter(r => ASIA.has(r[0])).reduce((s, r) => s + G[d][r[0]], 0); lbl(svg, x0 + bw * .36, y(t) - 6, Math.round(100 * a / t) + "%", "lab s b", "middle"); } });
+});
+document.getElementById("boomLegend").innerHTML = REGIONS.map(r => `<span><i style="background:${r[1]};border-radius:2px"></i>${esc(r[0])}</span>`).join("") + `<span>% = Asia's share</span>`;
+document.querySelectorAll("#boomMode .btn").forEach(b => b.onclick = () => { boomMode = b.dataset.m; press("#boomMode", b); drawBoom(); });
+
+/* ---------- 05: cities ---------- */
+let cityMode = "n";
+const drawCities = resp(document.getElementById("cities"), (W, sm) => {
+  const box = document.getElementById("cities"); let list = R.wd.cities.slice();
+  list.sort((a, b) => b[cityMode] - a[cityMode] || b.n - a.n); list = list.slice(0, sm ? 12 : 16);
+  const rh = 24, ml = sm ? 118 : 150, H = list.length * rh + 8, svg = el("svg", { viewBox: `0 0 ${W} ${H}` }, box), mx = Math.max(...list.map(c => c.n)), x = v => ml + v / mx * (W - ml - 50);
+  list.forEach((c, i) => { const y = 4 + i * rh, col = REGIONS[RIDX[c.region] ?? 0] ? REGIONS[RIDX[c.region]][1] : "#999";
+    lbl(svg, ml - 8, y + 15, c.city, "lab", "end");
+    const g = el("g", { style: "cursor:pointer" }, svg);
+    el("rect", { x: ml, y: y + 3, width: Math.max(2, x(c.n) - ml), height: rh - 8, fill: col, opacity: .55 }, g);
+    if (c.n350) el("rect", { x: ml, y: y + 3, width: Math.max(2, x(c.n350) - ml), height: rh - 8, fill: col }, g);
+    lbl(svg, x(c.n) + 6, y + 15, `${c.n}${c.n350 ? " · " + c.n350 + " of 350 m+" : ""}`, "lab m s", "start");
+    const th = `<b>${esc(c.city)}</b>, ${esc(c.country)}<br>${c.n} buildings of 200 m or more in Wikidata (checked)<br>${c.n350} of 350 m or more on the complete list<br>Tallest: ${esc(c.tallest)}, ${fm1(c.tallest_h)} m`;
+    g.addEventListener("mousemove", e => showTip(th, e.clientX, e.clientY)); g.addEventListener("mouseleave", hideTip); g.addEventListener("click", () => { setStep(STEPS.length - 1); S.min = 200; press("#minRow", document.querySelector('#minRow [data-m="200"]')); drawDots(); flyCity(c.city); });
+  });
+});
+document.querySelectorAll("#cityMode .btn").forEach(b => b.onclick = () => { cityMode = b.dataset.m; press("#cityMode", b); drawCities(); });
+
+/* ---------- 06: under construction ---------- */
+(function () {
+  const t = document.getElementById("ucTable"); const list = SITE.uc.slice(0, 12);
+  t.innerHTML = `<tr><th>Building</th><th>City</th><th class="r">Planned height</th><th class="r">Planned completion</th></tr>` + list.map(u => `<tr><td>${esc(u.name)}</td><td>${esc(u.city)}, ${esc(u.country)}</td><td class="r">${fmt(u.h)} m</td><td class="r">${esc(u.planned || "not given")}</td></tr>`).join("");
+  const s = document.getElementById("jedMark"), k = 150 / 1010;
+  [["Burj Khalifa", 30, "b"], ["Jeddah Tower", 78, "p"]].forEach(([n, x, m]) => drawSil(s, SIL.poly[n], x, 156, k, m === "b" ? { fill: CCOL["Dubai"] } : { fill: "none", stroke: css("--hot"), "stroke-width": 1.4, "stroke-dasharray": "3 2" }));
+})();
+
+/* ---------- theme ---------- */
+document.getElementById("theme").onclick = () => { const r = document.documentElement; r.dataset.theme = isDark() ? "light" : "dark"; setTiles(); redraws.forEach(f => f()); legend(); };
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { setTiles(); redraws.forEach(f => f()); });
+</script>
+/*FULLSCREEN*/
+</body>
+</html>
